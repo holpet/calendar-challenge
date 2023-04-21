@@ -32,3 +32,24 @@ body {
   filter: invert(30%) sepia(100%) saturate(1189%) hue-rotate(241deg)
     brightness(88%) contrast(97%);
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d9dce2;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #d9dce2;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #7e45db;
+  border-radius: 14px;
+}

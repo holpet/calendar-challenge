@@ -24,10 +24,10 @@ const Header = () => {
   }
 
   return (
-    <header className="px-4 py-2 flex items-center justify-between border-b border-light-gray">
+    <header className="px-4 py-2 flex items-center justify-between border-b border-light-gray sticky top-0 w-full h-20 z-2">
       <div className="flex justify-start items-center">
         {/* ----- CALENDAR ICON ----- */}
-        <div className="relative">
+        <div className="relative mr-4 text-center">
           <img
             src={logo_grad2}
             alt="calendar"
@@ -47,7 +47,7 @@ const Header = () => {
         >
           <CL fontSize="large" onClick={handlePrevMonth} />
         </button>
-        <h2 className="text-3xl font-bold mx-6">
+        <h2 className="text-3xl font-bold mx-6 text-center">
           {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM")}
           <span className="font-thin">
             {" "}
@@ -63,7 +63,7 @@ const Header = () => {
       </div>
 
       {/* ----- DISPLAY SWAPPER ----- */}
-      <div className="flex items-center text-sm ">
+      <div className="flex items-center justify-items-center text-sm text-center">
         <button onClick={handleReset} className="py-2 px-4 mr-5">
           Today
         </button>

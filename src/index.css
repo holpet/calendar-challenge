@@ -6,9 +6,14 @@
 @tailwind utilities;
 
 @layer components {
-  /* This won't be included in your compiled CSS unless you actually use it */
-  .product {
-    @apply relative flex flex-col m-5 bg-white z-10 p-5 md:p-7 lg:p-8 border-mainWhiteGray border-t-2 shadow-lg rounded-3xl transition-all;
+  .CONTROL {
+    @apply border border-light-gray;
+  }
+  .disabled {
+    @apply text-light-gray;
+  }
+  .selected {
+    @apply bg-purple text-white rounded;
   }
 }
 
@@ -26,11 +31,6 @@ body {
   box-sizing: border-box;
   height: 100vh;
   overflow-x: hidden;
-}
-
-.icon {
-  filter: invert(30%) sepia(100%) saturate(1189%) hue-rotate(241deg)
-    brightness(88%) contrast(97%);
 }
 
 /* Firefox */

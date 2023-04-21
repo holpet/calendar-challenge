@@ -1,12 +1,12 @@
-import SmallCalendar from "./components/SmallCalendar";
+import SideMonthCalendar from "../calendar/month_calender/variants/SideMonthCalendar";
 
 const SidePanel = () => {
   return (
-    <aside className="border-r p-5 flex w-72 h-full">
+    <div className="">
       {/* <CreateEventButton /> */}
-      <SmallCalendar />
+      <SideMonthCalendar />
       {/* <Labels /> */}
-    </aside>
+    </div>
   );
 };
 

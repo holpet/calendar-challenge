@@ -23,6 +23,7 @@ export default {
 
       // primary shades -> color gradiants
       "light-purple": "#b8afec",
+      "lightest-purple": "#d6d1f4",
       "mid-purple": "#905fe0",
       "light-pink": "#f552b1",
 
@@ -58,6 +59,10 @@ export default {
       minWidth: {
         "icon-big": "70px",
         "icon-small": "50px",
+      },
+      gridTemplateColumns: {
+        // Simple 7 column grid
+        "7": "repeat(7, minmax(0, 1fr))",
       },
     },
   },

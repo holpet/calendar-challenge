@@ -17,6 +17,7 @@
     "@mui/x-date-pickers": "^6.2.1",
     "@types/material-ui": "^0.21.12",
     "dayjs": "^1.11.7",
+    "jotai": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -34,7 +34,7 @@ const MonthCalendar = ({
         <div
           key={i}
           className={` ${
-            fullScreen ? "text-right text-2xl px-2" : "text-sm text-center"
+            fullScreen ? "text-center text-2xl px-2" : "text-sm text-center"
           }`}
         >
           <span>
@@ -58,8 +58,15 @@ const MonthCalendar = ({
         days_7.push(
           <div
             key={i}
-            className={`${
-              fullScreen ? "px-2 border-t border-l border-light-gray" : ""
+            onClick={() => {
+              setCurrentMonthData(now);
+            }}
+            className={`hover:cursor-pointer ${
+              fullScreen
+                ? "px-2 py-1 border-t border-l border-light-gray"
+                : "my-1"
+            } ${
+              fullScreen && d.isCurrentDay && "shadow-highlight shadow-purple"
             }`}
           >
             <span
@@ -87,8 +94,8 @@ const MonthCalendar = ({
       <div
         className={`text-lg grid grid-cols-7 grid-flow-row ${
           fullScreen
-            ? "h-10 items-center text-right bg-gradient-to-r from-light-purple to-lightest-purple rounded-t-lg"
-            : "text-center"
+            ? "h-10 items-center bg-gradient-to-r from-light-purple to-lightest-purple rounded-t-lg"
+            : "my-1 bg-gradient-to-r from-light-purple to-lightest-purple rounded-md"
         }`}
       >
         {renderNameOfDays()}

@@ -10,7 +10,7 @@ const Header = () => {
   );
 
   return (
-    <header className="px-6 py-2 flex items-center justify-between border-b border-light-gray sticky top-0 w-full h-20 z-2">
+    <header className="px-6 flex items-center justify-between border-b border-light-gray sticky top-0 w-full h-18 z-2">
       <div className="flex justify-start items-center">
         <Logo />
         <MonthCalendarHeader
@@ -19,7 +19,10 @@ const Header = () => {
           setCurrentMonthData={setCurrentMainMonthData}
         />
       </div>
-      <DisplaySwapper />
+      <DisplaySwapper
+        currentMonthData={currentMainMonthData}
+        setCurrentMonthData={setCurrentMainMonthData}
+      />
     </header>
   );
 };

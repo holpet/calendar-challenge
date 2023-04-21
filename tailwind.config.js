@@ -60,9 +60,15 @@ export default {
         "icon-big": "70px",
         "icon-small": "50px",
       },
+      height: {
+        "18": "4.5rem",
+      },
       gridTemplateColumns: {
         // Simple 7 column grid
         "7": "repeat(7, minmax(0, 1fr))",
+      },
+      boxShadow: {
+        highlight: "inset 0px -6px 0px 0px rgb(0 0 0 / 0.1)",
       },
     },
   },

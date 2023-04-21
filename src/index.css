@@ -13,7 +13,13 @@
     @apply text-light-gray;
   }
   .selected {
-    @apply bg-purple text-white rounded;
+    @apply bg-purple text-white rounded px-1 py-[2px];
+  }
+  .swapper-active {
+    @apply m-1 bg-purple text-white rounded-lg cursor-default;
+  }
+  .swapper-hover {
+    @apply hover:text-purple hover:font-bold transition-all;
   }
 }
 

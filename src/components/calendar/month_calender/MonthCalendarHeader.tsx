@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import { default as CL } from "@mui/icons-material/ChevronLeft";
 import { default as CR } from "@mui/icons-material/ChevronRight";
 

@@ -20,7 +20,7 @@ function App() {
         </aside>
         <main className="flex flex-col w-full overflow-y-auto">
           <div className="flex w-full min-h-[calc(100vh-4.5rem)] mx-auto p-6">
-            <div className="w-full min-h-full items-center justify-center text-gray-900 text-xl bg-white">
+            <div className="w-full min-h-full items-center justify-center text-gray-900 text-xl">
               <MonthCalendar />
             </div>
           </div>

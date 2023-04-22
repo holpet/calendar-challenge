@@ -68,7 +68,9 @@ const MonthCalendar = ({
         <div
           key={i}
           className={` ${
-            fullScreen ? "text-center text-2xl px-2" : "text-sm text-center"
+            fullScreen
+              ? "text-lg px-2 py-1 h-10 flex items-center justify-center uppercase first:rounded-t-lg border-l border-light-gray"
+              : "text-sm text-center"
           }`}
         >
           <span>
@@ -122,9 +124,9 @@ const MonthCalendar = ({
   return (
     <>
       <div
-        className={`text-lg grid grid-cols-7 grid-flow-row ${
+        className={`text-lg grid grid-cols-7 ${
           fullScreen
-            ? "h-10 items-center bg-gradient-to-r from-light-purple to-lightest-purple rounded-t-lg"
+            ? "items-center bg-gradient-to-r from-light-purple to-lightest-purple rounded-t-lg border-r border-light-gray"
             : "my-1 bg-gradient-to-r from-light-purple to-lightest-purple rounded-md"
         }`}
       >
@@ -133,7 +135,7 @@ const MonthCalendar = ({
       <div
         className={`calendar text-lg grid grid-cols-7 ${
           fullScreen
-            ? "min-h-[calc(100%-2.5rem)] border-r border-b border-light-gray text-right"
+            ? "min-h-[calc(100%-2.5rem)] border-r border-b bg-white border-light-gray text-right"
             : "text-center text-xs"
         }`}
       >

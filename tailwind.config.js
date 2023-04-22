@@ -60,6 +60,7 @@ export default {
       minWidth: {
         "icon-big": "70px",
         "icon-small": "50px",
+        "side-panel": "14rem",
       },
       height: {
         "18": "4.5rem",

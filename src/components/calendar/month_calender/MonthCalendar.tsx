@@ -1,18 +1,19 @@
-import dayjs, { Dayjs } from "dayjs";
-import weekdayPlugin from "dayjs/plugin/weekday";
-import isTodayPlugin from "dayjs/plugin/isToday";
-dayjs.extend(weekdayPlugin);
-dayjs.extend(isTodayPlugin);
+import { Dayjs } from "dayjs";
 import { Fragment, useEffect, useState } from "react";
 import {
   IAllDays,
   IFormattedObj,
-  formatDateObjectToOrig,
   getAllDays,
-  isSameDate,
 } from "../../../lib/date_utils/dateUtils";
 import { now, selectedDateAtom } from "../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
+
+/**
+ * This component serves for two calendars - one is the MAIN (full screen) one and the other the small SIDE calendar on the panel.
+ * @prop fullScreen: determines which classes belong to which calendar
+ * @prop currentMonthData: global state for the PRIMARY calendar (if it's passed from MAIN -> MAIN (full screen) calendar state, otherwise SIDE calendar state)
+ * @prop currentOtherMonthData: global state for the OTHER calendar (if it's passed from MAIN -> SIDE (side panel) calendar state, otherwise MAIN calendar state)
+ */
 
 interface ICalenderProps {
   fullScreen?: boolean;
@@ -37,6 +38,21 @@ const MonthCalendar = ({
     setAllDays(allDays);
   }, [currentMonthData]);
 
+  /* Handle selection of dates */
+  useEffect(() => {
+    const handleNoSelection = (e: Event) => {
+      const calendar = document.querySelectorAll(".calendar");
+      if (
+        !calendar[0]?.contains(e.target as Node) &&
+        !calendar[1]?.contains(e.target as Node)
+      ) {
+        setSelectedDate(null);
+      }
+    };
+    document.addEventListener("click", handleNoSelection);
+    return () => document.removeEventListener("click", handleNoSelection);
+  }, []);
+
   function handleSelection(d: IFormattedObj) {
     const date = d.origFormat;
     setSelectedDate(date);
@@ -44,7 +60,7 @@ const MonthCalendar = ({
     setCurrentMonthData(date);
   }
 
-  /* create NAMES OF DAYS */
+  /* FIRST ROW: create names of days */
   const renderNameOfDays = () => {
     const dateFormat = "dddd";
     const days = [];
@@ -67,7 +83,7 @@ const MonthCalendar = ({
     return <>{days}</>;
   };
 
-  /* create ARRAY OF NUMBERED DAYS */
+  /* NEXT 5-6 ROWS: create numbered days */
   const renderAllDays = () => {
     const rows = new Array();
     let days_7 = new Array();
@@ -77,18 +93,14 @@ const MonthCalendar = ({
         days_7.push(
           <div
             key={i}
-            /* select a date */
+            /* handle color selections */
             onClick={() => handleSelection(d)}
             className={`hover:cursor-pointer ${
               fullScreen
                 ? "px-2 py-1 border-t border-l border-light-gray"
                 : "my-1"
-            } ${
-              fullScreen && d.isCurrentDay && "shadow-highlight shadow-purple"
-            } ${
-              fullScreen &&
-              selectedDate?.isSame(d.origFormat) &&
-              "shadow-highlight shadow-light-purple"
+            } ${fullScreen && d.isCurrentDay && "today-hl"} ${
+              fullScreen && selectedDate?.isSame(d.origFormat) && "selected-hl"
             }`}
           >
             <span
@@ -120,7 +132,7 @@ const MonthCalendar = ({
         {renderNameOfDays()}
       </div>
       <div
-        className={`text-lg grid grid-cols-7 ${
+        className={`calendar text-lg grid grid-cols-7 ${
           fullScreen
             ? "min-h-[calc(100%-2.5rem)] border-r border-b border-light-gray text-right"
             : "text-center text-xs"

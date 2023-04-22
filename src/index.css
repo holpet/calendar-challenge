@@ -15,8 +15,14 @@
   .today {
     @apply bg-purple text-white rounded px-1 py-[2px];
   }
+  .today-hl {
+    @apply shadow-highlight shadow-purple;
+  }
   .selected {
     @apply bg-light-purple text-white rounded px-1 py-[2px];
+  }
+  .selected-hl {
+    @apply shadow-highlight shadow-light-purple;
   }
   .swapper-active {
     @apply m-1 bg-purple text-white rounded-lg cursor-default;

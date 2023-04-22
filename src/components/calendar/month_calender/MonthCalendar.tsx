@@ -27,7 +27,6 @@ const MonthCalendar = ({
   fullScreen = true,
   currentMonthData,
   setCurrentMonthData,
-  currentOtherMonthData,
   setCurrentOtherMonthData,
 }: ICalenderProps) => {
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);

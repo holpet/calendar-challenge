@@ -7,13 +7,8 @@ interface IDisplaySwapperProps {
   setCurrentMonthData: React.Dispatch<React.SetStateAction<Dayjs>>;
 }
 
-const DisplaySwapper = ({
-  currentMonthData,
-  setCurrentMonthData,
-}: IDisplaySwapperProps) => {
-  const [currentSideMonthData, setCurrentSideMonthData] = useAtom(
-    currentSideMonthAtom
-  );
+const DisplaySwapper = ({ setCurrentMonthData }: IDisplaySwapperProps) => {
+  const [, setCurrentSideMonthData] = useAtom(currentSideMonthAtom);
 
   return (
     <div className="flex items-center justify-items-center text-sm text-center">

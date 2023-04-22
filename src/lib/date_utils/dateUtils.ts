@@ -12,6 +12,7 @@ export interface IFormattedObj {
   year: number;
   isCurrentMonth: boolean;
   isCurrentDay: boolean;
+  origFormat: Dayjs;
 }
 
 /**
@@ -30,6 +31,7 @@ const formatDateObject = (
     year: clonedObj.years,
     isCurrentMonth: clonedObj.months === currentMonthData.month(),
     isCurrentDay: date.isToday(),
+    origFormat: date,
   };
 
   return formattedObject;
@@ -52,17 +54,13 @@ export const getAllDays = (
   let allDates = [];
   let weekDates = [];
   let weekCounter = 1;
-  let weeks = 0;
-  while (
-    currentDate.weekday(0).toObject().months !== nextMonth /*|| weeks < 6*/
-  ) {
+  while (currentDate.weekday(0).toObject().months !== nextMonth) {
     const formatted = formatDateObject(currentDate, currentMonthData);
     weekDates.push(formatted);
     if (weekCounter === 7) {
       allDates.push({ dates: weekDates });
       weekDates = [];
       weekCounter = 0;
-      weeks++;
     }
     weekCounter++;
     currentDate = currentDate.add(1, "day");

@@ -12,8 +12,11 @@
   .disabled {
     @apply text-light-gray;
   }
-  .selected {
+  .today {
     @apply bg-purple text-white rounded px-1 py-[2px];
+  }
+  .selected {
+    @apply bg-light-purple text-white rounded px-1 py-[2px];
   }
   .swapper-active {
     @apply m-1 bg-purple text-white rounded-lg cursor-default;

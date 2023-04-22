@@ -4,26 +4,45 @@ import isTodayPlugin from "dayjs/plugin/isToday";
 dayjs.extend(weekdayPlugin);
 dayjs.extend(isTodayPlugin);
 import { Fragment, useEffect, useState } from "react";
-import { IAllDays, getAllDays } from "../../../lib/date_utils/dateUtils";
-import { now } from "../../../lib/atoms/globalAtoms";
+import {
+  IAllDays,
+  IFormattedObj,
+  formatDateObjectToOrig,
+  getAllDays,
+  isSameDate,
+} from "../../../lib/date_utils/dateUtils";
+import { now, selectedDateAtom } from "../../../lib/atoms/globalAtoms";
+import { useAtom } from "jotai";
 
 interface ICalenderProps {
   fullScreen?: boolean;
   currentMonthData: Dayjs;
   setCurrentMonthData: React.Dispatch<React.SetStateAction<Dayjs>>;
+  currentOtherMonthData: Dayjs;
+  setCurrentOtherMonthData: React.Dispatch<React.SetStateAction<Dayjs>>;
 }
 
 const MonthCalendar = ({
   fullScreen = true,
   currentMonthData,
   setCurrentMonthData,
+  currentOtherMonthData,
+  setCurrentOtherMonthData,
 }: ICalenderProps) => {
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);
+  const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
 
   useEffect(() => {
     const allDays = getAllDays(currentMonthData);
     setAllDays(allDays);
   }, [currentMonthData]);
+
+  function handleSelection(d: IFormattedObj) {
+    const date = d.origFormat;
+    setSelectedDate(date);
+    setCurrentOtherMonthData(date);
+    setCurrentMonthData(date);
+  }
 
   /* create NAMES OF DAYS */
   const renderNameOfDays = () => {
@@ -58,25 +77,25 @@ const MonthCalendar = ({
         days_7.push(
           <div
             key={i}
-            onClick={() => {
-              setCurrentMonthData(now);
-            }}
+            /* select a date */
+            onClick={() => handleSelection(d)}
             className={`hover:cursor-pointer ${
               fullScreen
                 ? "px-2 py-1 border-t border-l border-light-gray"
                 : "my-1"
             } ${
               fullScreen && d.isCurrentDay && "shadow-highlight shadow-purple"
+            } ${
+              fullScreen &&
+              selectedDate?.isSame(d.origFormat) &&
+              "shadow-highlight shadow-light-purple"
             }`}
           >
             <span
               className={`${
-                !d.isCurrentMonth
-                  ? "disabled"
-                  : d.isCurrentDay
-                  ? "selected"
-                  : ""
-              }`}
+                !d.isCurrentMonth ? "disabled" : d.isCurrentDay ? "today" : ""
+              } ${selectedDate?.isSame(d.origFormat) && "selected"}
+              `}
             >
               {d.day}
             </span>

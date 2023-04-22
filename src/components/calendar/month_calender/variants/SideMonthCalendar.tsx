@@ -1,11 +1,17 @@
 import CalendarHeader from "../MonthCalendarHeader";
 import Calendar from "../MonthCalendar";
 import { useAtom } from "jotai";
-import { currentSideMonthAtom } from "../../../../lib/atoms/globalAtoms";
+import {
+  currentMainMonthAtom,
+  currentSideMonthAtom,
+} from "../../../../lib/atoms/globalAtoms";
 
 const SideMonthCalendar = () => {
   const [currentSideMonthData, setCurrentSideMonthData] = useAtom(
     currentSideMonthAtom
+  );
+  const [currentMainMonthData, setCurrentMainMonthData] = useAtom(
+    currentMainMonthAtom
   );
 
   return (
@@ -19,6 +25,8 @@ const SideMonthCalendar = () => {
         fullScreen={false}
         currentMonthData={currentSideMonthData}
         setCurrentMonthData={setCurrentSideMonthData}
+        currentOtherMonthData={currentMainMonthData}
+        setCurrentOtherMonthData={setCurrentMainMonthData}
       />
     </div>
   );

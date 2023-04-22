@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @layer components {
-  .CONTROL {
+  .border-gen {
     @apply border border-light-gray;
   }
   .disabled {

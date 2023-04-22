@@ -15,7 +15,7 @@ const SideMonthCalendar = () => {
   );
 
   return (
-    <div className="px-4">
+    <div>
       <CalendarHeader
         fullScreen={false}
         currentMonthData={currentSideMonthData}

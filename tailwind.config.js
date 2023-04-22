@@ -31,6 +31,7 @@ export default {
       "dark-gray": "#5b6578",
       "light-gray": "#d9dce2",
       "lightest-gray": "#f1f2f4",
+      "white-gray": "#f7f8f9",
       "dark-blue": "#1b1351",
       "mid-blue": "#26196a",
 

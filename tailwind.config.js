@@ -24,6 +24,7 @@ export default {
       // primary shades -> color gradiants
       "light-purple": "#b8afec",
       "lightest-purple": "#d6d1f4",
+      "white-purple": "#e8e5f9",
       "mid-purple": "#905fe0",
       "light-pink": "#f552b1",
 
@@ -52,8 +53,8 @@ export default {
       "ana-pink": "#4557DB",
     },
     fontFamily: {
-      general: ["Arial", "serif"],
-      handwritten: ["Great Vibes", "cursive"],
+      global: ["Inter", "sans-serif"],
+      handwritten: ["Permanent Marker", "cursive"],
       special: ["Sanchez", "serif"],
       inherit: "inherit",
     },

@@ -1,6 +1,6 @@
 import { default as Add } from "@mui/icons-material/AddCircle";
 import { colors } from "../SidePanel";
-import EditCard from "../../calendar/calendar_edit_cards/EditCard";
+import EditModal from "../../calendar/calendar_edit_cards/EditModal";
 import { useState } from "react";
 
 const Create = () => {
@@ -8,7 +8,7 @@ const Create = () => {
 
   return (
     <>
-      <EditCard open={open} setOpen={setOpen} />
+      <EditModal open={open} setOpen={setOpen} />
       <div
         onClick={() => setOpen(true)}
         className="flex justify-between items-center mb-8 p-1 border-b-[5px] border-lightest-gray hover:cursor-pointer"

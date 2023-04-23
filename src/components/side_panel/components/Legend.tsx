@@ -1,24 +1,6 @@
 import { default as Info } from "@mui/icons-material/Info";
 import { colors } from "../SidePanel";
-
-export const LEGEND_COLORS = [
-  {
-    meaning: "High Priority",
-    colorClass: "bg-orange",
-  },
-  {
-    meaning: "Mid Priority",
-    colorClass: "bg-green",
-  },
-  {
-    meaning: "Special Event",
-    colorClass: "bg-pink",
-  },
-  {
-    meaning: "Standard Event",
-    colorClass: "bg-white border border-light-gray",
-  },
-];
+import { LEGEND_COLORS } from "../../../lib/constants";
 
 const Legend = () => {
   return (

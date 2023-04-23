@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { Fragment, useEffect, useState } from "react";
 import {
   IAllDays,
@@ -37,24 +37,10 @@ const MonthCalendar = ({
     setAllDays(allDays);
   }, [currentMonthData]);
 
-  /* Handle selection of dates */
-  useEffect(() => {
-    const handleNoSelection = (e: Event) => {
-      const calendar = document.querySelectorAll(".calendar");
-      if (
-        !calendar[0]?.contains(e.target as Node) &&
-        !calendar[1]?.contains(e.target as Node)
-      ) {
-        setSelectedDate(null);
-      }
-    };
-    document.addEventListener("click", handleNoSelection);
-    return () => document.removeEventListener("click", handleNoSelection);
-  }, []);
-
   function handleSelection(d: IFormattedObj) {
-    const date = d.origFormat;
-    setSelectedDate(date);
+    const date = dayjs(d.origFormat);
+    if (selectedDate?.isSame(date)) setSelectedDate(null);
+    else setSelectedDate(date);
     setCurrentOtherMonthData(date);
     setCurrentMonthData(date);
   }
@@ -133,7 +119,7 @@ const MonthCalendar = ({
         {renderNameOfDays()}
       </div>
       <div
-        className={`calendar text-lg grid grid-cols-7 ${
+        className={`text-lg grid grid-cols-7 ${
           fullScreen
             ? "min-h-[calc(100%-2.5rem)] border-r border-b bg-white border-light-gray text-right"
             : "text-center text-xs"

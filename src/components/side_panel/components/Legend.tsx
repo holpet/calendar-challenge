@@ -1,6 +1,25 @@
 import { default as Info } from "@mui/icons-material/Info";
 import { colors } from "../SidePanel";
 
+export const LEGEND_COLORS = [
+  {
+    meaning: "High Priority",
+    colorClass: "bg-orange",
+  },
+  {
+    meaning: "Mid Priority",
+    colorClass: "bg-green",
+  },
+  {
+    meaning: "Special Event",
+    colorClass: "bg-pink",
+  },
+  {
+    meaning: "Standard Event",
+    colorClass: "bg-white border border-light-gray",
+  },
+];
+
 const Legend = () => {
   return (
     <div className="mt-8 break-all overflow-hidden">
@@ -11,22 +30,16 @@ const Legend = () => {
         <h3 className="text-right font-light text-base">...Legend</h3>
       </div>
       <div className="px-2">
-        <div className="flex items-center text-xs text-gray py-1">
-          <div className="bg-orange rounded-full w-5 h-5 mr-2"></div>
-          <p>High Priority</p>
-        </div>
-        <div className="flex items-center text-xs text-gray py-1">
-          <div className="bg-green rounded-full w-5 h-5 mr-2"></div>
-          <p>Mid Priority</p>
-        </div>
-        <div className="flex items-center text-xs text-gray py-1">
-          <div className="bg-light-pink rounded-full w-5 h-5 mr-2"></div>
-          <p>Special event</p>
-        </div>
-        <div className="flex items-center text-xs text-gray py-1">
-          <div className="bg-white border border-light-gray rounded-full w-5 h-5 mr-2"></div>
-          <p>Standard Event</p>
-        </div>
+        {LEGEND_COLORS.map((color, i) => {
+          return (
+            <div key={i} className="flex items-center text-xs text-gray py-1">
+              <div
+                className={`${color.colorClass} rounded-full w-5 h-5 mr-2`}
+              ></div>
+              <p>{color.meaning}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

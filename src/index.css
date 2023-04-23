@@ -25,10 +25,13 @@
     @apply shadow-highlight shadow-light-purple;
   }
   .swapper-active {
-    @apply m-1 bg-purple text-white rounded-lg cursor-default;
+    @apply py-2 px-6 w-24 m-1 bg-purple text-white rounded-lg cursor-default;
   }
   .swapper-hover {
-    @apply hover:text-purple hover:font-bold transition-all;
+    @apply py-2 px-6 w-24 hover:text-purple hover:font-bold transition-all;
+  }
+  .gen-link {
+    @apply py-2 px-6 w-24 m-1 bg-purple text-white rounded-lg uppercase cursor-pointer hover:bg-mid-purple transition-all;
   }
 }
 
@@ -38,6 +41,10 @@
   /* FONTS */
   font-family: Inter, sans-serif;
   font-weight: 400;
+}
+::selection {
+  background-color: #905fe0;
+  color: white;
 }
 
 body {

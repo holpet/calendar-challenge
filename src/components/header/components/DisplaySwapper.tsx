@@ -22,13 +22,13 @@ const DisplaySwapper = ({ setCurrentMonthData }: IDisplaySwapperProps) => {
         Today
       </button>
       <div className="bg-lightest-gray rounded-lg">
-        <button onClick={() => {}} className="py-2 px-6 w-24 swapper-hover">
+        <button onClick={() => {}} className="swapper-hover">
           Day
         </button>
-        <button onClick={() => {}} className="py-2 px-6 w-24 swapper-hover">
+        <button onClick={() => {}} className="swapper-hover">
           Week
         </button>
-        <button onClick={() => {}} className="py-2 px-6 w-24 swapper-active">
+        <button onClick={() => {}} className="swapper-active">
           Month
         </button>
       </div>

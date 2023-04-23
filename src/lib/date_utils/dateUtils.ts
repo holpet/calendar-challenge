@@ -2,6 +2,10 @@ import dayjs, { Dayjs } from "dayjs";
 import weekdayPlugin from "dayjs/plugin/weekday";
 import objectPlugin from "dayjs/plugin/toObject";
 import isTodayPlugin from "dayjs/plugin/isToday";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.extend(weekdayPlugin);
 dayjs.extend(objectPlugin);
 dayjs.extend(isTodayPlugin);
@@ -33,7 +37,6 @@ const formatDateObject = (
     isCurrentDay: date.isToday(),
     origFormat: date,
   };
-
   return formattedObject;
 };
 

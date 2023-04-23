@@ -55,6 +55,7 @@ export default {
       general: ["Arial", "serif"],
       handwritten: ["Great Vibes", "cursive"],
       special: ["Sanchez", "serif"],
+      inherit: "inherit",
     },
     extend: {
       minWidth: {

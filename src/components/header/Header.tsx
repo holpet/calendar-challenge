@@ -1,4 +1,4 @@
-import MonthCalendarHeader from "../calendar/month_calender/MonthCalendarHeader";
+import MonthCalendarHeader from "../calendar/month_calender/components/MonthCalendarHeader";
 import { currentMainMonthAtom } from "../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
 import Logo from "./components/Logo";

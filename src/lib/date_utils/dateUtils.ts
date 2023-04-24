@@ -4,6 +4,8 @@ import objectPlugin from "dayjs/plugin/toObject";
 import isTodayPlugin from "dayjs/plugin/isToday";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+
+/* dayjs config */
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(weekdayPlugin);
@@ -20,7 +22,7 @@ export interface IFormattedObj {
 }
 
 /**
- * Function that will format the date object for easier manipulation.
+ * Function that will format the date object for easier manipulation during grid preparation.
  * @param date
  * @returns see interface above.
  */
@@ -45,7 +47,8 @@ export interface IAllDays {
 }
 
 /**
- * Function that creates an array of current month weeks (7 days in 5-6 rows).
+ * Function that creates an array of weeks in a current month.
+ * 7 days in 5-6 rows, starting with Monday.
  * @param currentMonthData
  * @returns see interface above.
  */

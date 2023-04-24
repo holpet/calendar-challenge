@@ -6,7 +6,7 @@ import { now, selectedDateAtom } from "../../../../lib/atoms/globalAtoms";
 import { Dayjs } from "dayjs";
 import {
   getDateFromFormatted,
-  getFormattedDate,
+  getFormattedDateData,
   getFormattedDateForDBInsertion,
 } from "../../../../lib/db/dbUtils";
 import { EVENTS } from "../../../../lib/db/eventsData";
@@ -41,19 +41,16 @@ const Form = ({
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!startDate || !endDate) return;
-    const key = getFormattedDate(startDate)!.date;
-    const val = getFormattedDateForDBInsertion(
+    const dbObj = getFormattedDateForDBInsertion(
       eventName,
       startDate,
       endDate,
       activeColor,
       activeFont
     );
-
-    EVENTS.set(key, [val]);
+    EVENTS.push(dbObj);
     console.log(EVENTS);
-
-    //setOpen(false);
+    setOpen(false);
   }
 
   return (

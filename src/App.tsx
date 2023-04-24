@@ -1,3 +1,4 @@
+import { CalendarFullView } from "./components/calendar/full_calendar/CalendarFullView";
 import MonthCalendar from "./components/calendar/month_calender/variants/MainMonthCalendar";
 import Header from "./components/header/Header";
 import SidePanel from "./components/side_panel/SidePanel";
@@ -9,8 +10,8 @@ import SidePanel from "./components/side_panel/SidePanel";
 function App() {
   return (
     <div className="text-dark-gray flex flex-col h-screen bg-white-gray">
-      <Header />
-      <div className="flex h-[calc(100vh-4.5rem)] z-0">
+      {/* <Header /> */}
+      <div className="flex h-full z-0">
         <aside className="flex w-[1fr] bg-pink-500">
           <div className="w-full flex mx-auto pl-6 pr-0 py-6">
             <div className="w-full flex items-start justify-center text-gray-900 text-xl bg-white border border-light-gray">
@@ -19,9 +20,9 @@ function App() {
           </div>
         </aside>
         <main className="flex flex-col w-full overflow-y-auto">
-          <div className="flex w-full min-h-[calc(100vh-4.5rem)] mx-auto p-6">
+          <div className="flex w-full min-h-full mx-auto p-6">
             <div className="w-full min-h-full items-center justify-center text-gray-900 text-xl">
-              <MonthCalendar />
+              <CalendarFullView />
             </div>
           </div>
         </main>

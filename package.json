@@ -12,6 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fullcalendar/core": "^6.1.6",
+    "@fullcalendar/daygrid": "^6.1.6",
+    "@fullcalendar/interaction": "^6.1.6",
+    "@fullcalendar/react": "^6.1.6",
+    "@fullcalendar/timegrid": "^6.1.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@mui/x-date-pickers": "^6.2.1",
@@ -19,6 +24,7 @@
     "jotai": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.62.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

@@ -45,7 +45,15 @@
   /* FONTS */
   font-family: Inter, sans-serif;
   font-weight: 400;
+
+  /* COLORS */
+  --white: "#ffffff";
+  --black: "#020204";
+  --gray: "#8f98aa";
+  --purple: "#7e45db";
+  --pink: "#de148b";
 }
+
 ::selection {
   background-color: #905fe0;
   color: white;

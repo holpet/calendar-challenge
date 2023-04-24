@@ -20,6 +20,7 @@ export default {
       purple: "#7e45db",
       pink: "#de148b",
       transparent: "transparent",
+      error: "red",
 
       // primary shades -> color gradiants
       "light-purple": "#b8afec",

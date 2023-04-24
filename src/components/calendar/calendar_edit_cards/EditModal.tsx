@@ -54,7 +54,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
             </div>
             {/* delete event */}
             <div>
-              <DeleteIcon style={{ color: "#7e45db" }} />
+              <DeleteIcon style={{ color: "gray" }} />
             </div>
           </div>
           {/* active color line */}

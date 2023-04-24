@@ -6,7 +6,6 @@ import { now, selectedDateAtom } from "../../../../lib/atoms/globalAtoms";
 import { Dayjs } from "dayjs";
 import {
   getDateFromFormatted,
-  getFormattedDateData,
   getFormattedDateForDBInsertion,
 } from "../../../../lib/db/dbUtils";
 import { EVENTS } from "../../../../lib/db/eventsData";
@@ -28,7 +27,7 @@ const Form = ({
 }: IForm) => {
   const [selectedDate] = useAtom(selectedDateAtom);
 
-  /* form data states */
+  /* ---------------------------------------------------- form data states */
   const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState<Dayjs | null>(
     getDateFromFormatted(selectedDate) || getDateFromFormatted(now)
@@ -38,9 +37,20 @@ const Form = ({
       getDateFromFormatted(now)!.add(4, "hour")
   );
 
+  /* ---------------------------------------------------- form validation */
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emptyName, setEmptyName] = useState(true);
+  const [errorDate, setErrorDate] = useState(false);
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!startDate || !endDate) return;
+    if (eventName === "") {
+      setIsSubmitted(true);
+      setEmptyName(true);
+      return;
+    }
+    if (errorDate) return;
     const dbObj = getFormattedDateForDBInsertion(
       eventName,
       startDate,
@@ -62,11 +72,21 @@ const Form = ({
           name="name"
           autoCorrect="off"
           placeholder="What's the event?..."
-          className={`border-none p-2 w-full outline-none font-bold ${activeFont} resize-none text-2xl bg-white-purple text-purple`}
+          className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} resize-none text-2xl bg-white-purple text-purple`}
           autoFocus={true}
           value={eventName}
-          onChange={(val) => setEventName(val.currentTarget.value)}
+          onChange={(val) => {
+            setEventName(val.currentTarget.value);
+            setIsSubmitted(false);
+          }}
         />
+        <small
+          className={`text-error px-1 ${
+            isSubmitted && emptyName ? "visible" : "hidden"
+          }`}
+        >
+          Missing name.
+        </small>
       </div>
 
       {/* ------ DATE OF THE EVENT ------ */}
@@ -75,6 +95,8 @@ const Form = ({
         startDate={startDate}
         setEndDate={setEndDate}
         endDate={endDate}
+        errorDate={errorDate}
+        setErrorDate={setErrorDate}
       />
 
       {/* ------ colors ------ */}

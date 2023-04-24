@@ -5,8 +5,13 @@ import {
   IFormattedObj,
   getAllDays,
 } from "../../../lib/date_utils/dateUtils";
-import { now, selectedDateAtom } from "../../../lib/atoms/globalAtoms";
+import {
+  calendarAPIAtom,
+  now,
+  selectedDateAtom,
+} from "../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
+import { getFormattedDateData } from "../../../lib/db/dbUtils";
 
 /**
  * This component serves for two calendars - one is the MAIN (full screen) one and the other the small SIDE calendar on the panel.
@@ -31,6 +36,7 @@ const MonthCalendar = ({
 }: ICalenderProps) => {
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);
   const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
+  const [calendarAPI] = useAtom(calendarAPIAtom);
 
   useEffect(() => {
     const allDays = getAllDays(currentMonthData);
@@ -41,6 +47,7 @@ const MonthCalendar = ({
     const date = dayjs(d.origFormat);
     if (selectedDate?.isSame(date)) setSelectedDate(null);
     else setSelectedDate(date);
+    calendarAPI?.gotoDate(getFormattedDateData(date)!.date);
     setCurrentOtherMonthData(date);
     setCurrentMonthData(date);
   }

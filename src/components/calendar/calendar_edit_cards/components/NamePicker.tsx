@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { getTextClass } from "../../../../lib/modal_utils/modalUtils";
+import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
 
 interface INamePickerProps {
   activeFont: string;
@@ -28,7 +28,12 @@ const NamePicker = ({
         autoCorrect="off"
         unselectable="off"
         placeholder="What's the event?..."
-        className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} text-purple resize-none text-2xl bg-white-purple`}
+        className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} ${
+          LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS]
+            .colorTextClass
+        } resize-none text-2xl ${
+          LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS].colorBgClass
+        }`}
         autoFocus={true}
         value={eventName}
         autoComplete="off"
@@ -42,7 +47,7 @@ const NamePicker = ({
           isSubmitted && emptyName ? "visible" : "hidden"
         }`}
       >
-        Missing name.
+        Missing title.
       </small>
     </div>
   );

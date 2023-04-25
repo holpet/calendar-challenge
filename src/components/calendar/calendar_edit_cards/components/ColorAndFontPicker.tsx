@@ -15,16 +15,18 @@ const ColorAndFontPicker = ({
   return (
     <div className="flex mr-2">
       {/* ------ colors ------ */}
-      {Object.values(LEGEND_COLORS).map((color, i) => (
-        <div key={i} className="flex items-center text-xs text-gray py-1">
-          <div
-            onClick={() => setActiveColor("purple")}
-            className={`${color.colorClass} ${
-              "purple" === activeColor && "color-active"
-            } rounded-full w-5 h-5 mr-2 hover:scale-110 hover:cursor-pointer transition-all`}
-          ></div>
-        </div>
-      ))}
+      {Object.values(LEGEND_COLORS)
+        .slice(0, 4)
+        .map((color, i) => (
+          <div key={i} className="flex items-center text-xs text-gray py-1">
+            <div
+              onClick={() => setActiveColor(color.name)}
+              className={`${color.colorClass} ${
+                color.name === activeColor && "color-active"
+              } rounded-full w-5 h-5 mr-2 hover:scale-110 hover:cursor-pointer transition-all`}
+            ></div>
+          </div>
+        ))}
       {/* ------ font ------ */}
       <div className="text-gray font-bold text-lg flex items-baseline">
         <div

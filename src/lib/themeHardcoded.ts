@@ -22,8 +22,8 @@ export const COLORS = {
   "green-300": "#d6f8be",
   "green-100": "#eefce4",
   pink: "#de148b",
-  "pink-300": "#fac7e5",
-  "pink-100": "#fef0f8",
+  "pink-300": "#fcd6ec",
+  "pink-100": "#fde5f3",
   gray: "#8f98aa",
   lightGray: "#d9dce2",
 };

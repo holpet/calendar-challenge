@@ -29,29 +29,25 @@ export default {
       "mid-purple": "#905fe0",
       "light-pink": "#f552b1",
 
-      // additional to primary
+      // 50 shades of gray
       "dark-gray": "#5b6578",
       "light-gray": "#d9dce2",
       "lightest-gray": "#f1f2f4",
       "white-gray": "#f7f8f9",
-      "dark-blue": "#1b1351",
-      "mid-blue": "#26196a",
 
       // complementary shades
-      orange: "#f89b18",
-      green: "#a2db45",
-      "dark-green": "#45db7e",
-      yellow: "#ffc82c",
-
-      // triadic shades
-      "tri-purple": "#7E45DB",
-      "tri-orange": "#DB7E45",
-      "tri-green": "#45DB7E",
-
-      // analogous shades
-      "ana-purple": "#7E45DB",
-      "ana-blue": "#4557DB",
-      "ana-pink": "#4557DB",
+      orange: "#ff7f00",
+      "orange-300": "#ffe5cb",
+      "orange-100": "#fff5ec",
+      //purple: "#7e45db",
+      "purple-300": "#e8e5f9",
+      "purple-100": "#f3f1fc",
+      green: "#57b914",
+      "green-300": "#d6f8be",
+      "green-100": "#eefce4",
+      pink: "#de148b",
+      "pink-300": "#fcd6ec",
+      "pink-100": "#fef0f8",
     },
     fontFamily: {
       global: ["Inter", "sans-serif"],

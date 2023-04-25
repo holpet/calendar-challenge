@@ -81,6 +81,7 @@ const Form = ({
 
       {/* ------ DATE OF THE EVENT ------ */}
       <DatePicker
+        activeColor={activeColor}
         setStartDate={setStartDate}
         startDate={startDate}
         setEndDate={setEndDate}

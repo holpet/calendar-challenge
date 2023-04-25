@@ -50,9 +50,11 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
     },
     style: {
       boxShadow: "rgba(100, 100, 111, 0.2) 0px 15px 29px 0px",
-      border: `10px solid ${COLORS.purple}`,
+      border: `10px solid ${COLORS[activeColor as keyof typeof COLORS]}`,
       borderRadius: "20px",
-      backgroundColor: `${COLORS["purple-300"]}`,
+      backgroundColor: `${
+        COLORS[(activeColor + "-300") as keyof typeof COLORS]
+      }`,
     },
   };
 

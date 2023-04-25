@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { COLORS } from "../../../../lib/themeHardcoded";
 
 interface IDatePickerProps {
+  activeColor: string;
   startDate: Dayjs | null;
   setStartDate: Dispatch<SetStateAction<Dayjs | null>>;
   endDate: Dayjs | null;
@@ -15,6 +16,7 @@ interface IDatePickerProps {
 }
 
 export default function DatePicker({
+  activeColor,
   startDate,
   setStartDate,
   endDate,
@@ -29,7 +31,7 @@ export default function DatePicker({
       textAlign: "center",
       fontSize: "large",
       letterSpacing: "0.05rem",
-      backgroundColor: COLORS["purple-100"],
+      backgroundColor: COLORS[(activeColor + "-100") as keyof typeof COLORS],
     },
     "& .MuiInputBase-root.Mui-focused .MuiInputBase-input": {
       color: "#8f98aa",

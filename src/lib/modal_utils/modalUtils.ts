@@ -1,22 +1,10 @@
 import { EventInput } from "@fullcalendar/core/index.js";
-import { v4 as uuidv4 } from "uuid";
 
 export const INIT_MODAL_DATA = {
   title: "",
   color: "purple",
   font: "text-global",
 };
-
-export function createNewEvent(start: Date, end: Date) {
-  return {
-    id: uuidv4(),
-    title: "",
-    start: start,
-    end: end,
-    color: "purple",
-    font: "text-global",
-  };
-}
 
 export function populateModal(event: EventInput) {}
 

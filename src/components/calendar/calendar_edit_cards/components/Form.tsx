@@ -1,48 +1,45 @@
 import { Dispatch, useState } from "react";
 import DatePicker from "./DatePicker";
 import { SetStateAction, useAtom } from "jotai";
-import {
-  eventsAtom,
-  now,
-  selectedDatesAtom,
-} from "../../../../lib/atoms/globalAtoms";
+import { eventsAtom } from "../../../../lib/atoms/globalAtoms";
 import dayjs, { Dayjs } from "dayjs";
-import { getDateFromFormatted } from "../../../../lib/db/dbUtils";
 import { v4 as uuidv4 } from "uuid";
 import ColorAndFontPicker from "./ColorAndFontPicker";
 import NamePicker from "./NamePicker";
 
 interface IForm {
+  setOpen: React.Dispatch<SetStateAction<boolean>>;
+  eventName: string;
+  setEventName: Dispatch<SetStateAction<string>>;
+  startDate: Dayjs | null;
+  setStartDate: Dispatch<SetStateAction<Dayjs | null>>;
+  endDate: Dayjs | null;
+  setEndDate: Dispatch<SetStateAction<Dayjs | null>>;
   activeColor: string;
   setActiveColor: Dispatch<SetStateAction<string>>;
   activeFont: string;
   setActiveFont: Dispatch<SetStateAction<string>>;
-  setOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const Form = ({
   setOpen,
+  eventName,
+  setEventName,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
   activeColor,
   setActiveColor,
   activeFont,
   setActiveFont,
 }: IForm) => {
-  const [selectedDates] = useAtom(selectedDatesAtom);
-
-  /* ---------------------------------------------------- form data states */
-  const [eventName, setEventName] = useState("");
-  const [startDate, setStartDate] = useState<Dayjs | null>(
-    selectedDates.start || getDateFromFormatted(now)
-  );
-  const [endDate, setEndDate] = useState<Dayjs | null>(
-    selectedDates.end || getDateFromFormatted(now)
-  );
-  const [events, setEvents] = useAtom(eventsAtom);
-
   /* ------------------------------------------------------ form validation */
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emptyName, setEmptyName] = useState(true);
   const [errorDate, setErrorDate] = useState(startDate! > endDate!);
+
+  const [events, setEvents] = useAtom(eventsAtom);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

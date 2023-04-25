@@ -1,15 +1,19 @@
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
-import { SetStateAction, useState } from "react";
-import { default as CalendarIcon } from "@mui/icons-material/EventAvailable";
-import { default as DeleteIcon } from "@mui/icons-material/DeleteOutline";
-import { LEGEND_COLORS } from "../../../lib/modal_utils/modalUtils";
+import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
-import { COLORS } from "../../../lib/themeHardcoded";
+import { COLORS, FONTS } from "../../../lib/themeHardcoded";
 import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import FormHeader from "./components/FormHeader";
+import { getDateFromFormatted } from "../../../lib/db/dbUtils";
+import {
+  activeEventAtom,
+  now,
+  selectedDatesAtom,
+} from "../../../lib/atoms/globalAtoms";
+import dayjs, { Dayjs } from "dayjs";
 import { useAtom } from "jotai";
-import { activeEventAtom } from "../../../lib/atoms/globalAtoms";
 
 export interface DialogTitleProps {
   id: string;
@@ -23,21 +27,46 @@ interface IEditCardProps {
 }
 
 export default function EditModal({ open, setOpen }: IEditCardProps) {
+  const [selectedDates] = useAtom(selectedDatesAtom);
+  const [activeEvent] = useAtom(activeEventAtom);
+
+  /* ---------------------------------------------------- form data states */
+  const [eventName, setEventName] = useState("");
+  const [startDate, setStartDate] = useState<Dayjs | null>(
+    selectedDates.start || getDateFromFormatted(now)
+  );
+  const [endDate, setEndDate] = useState<Dayjs | null>(
+    selectedDates.end || getDateFromFormatted(now)
+  );
   const [activeColor, setActiveColor] = useState<string>(INIT_MODAL_DATA.color);
   const [activeFont, setActiveFont] = useState<string>(INIT_MODAL_DATA.font);
 
-  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
+  /* ---------------------------------------------------- form data states */
 
-  function isALegendProperty(str: string): str is keyof typeof LEGEND_COLORS {
-    //alert(`str: ${str}`);
-    return ["orange", "purple", "white", "green", "pink"].includes(str);
-  }
+  useEffect(() => {
+    // NEW EVENT
+    if (activeEvent === null) {
+      setEventName("");
+      setStartDate(selectedDates.start);
+      setEndDate(selectedDates.end);
+      setActiveColor(INIT_MODAL_DATA.color);
+      setActiveFont(INIT_MODAL_DATA.font);
+    }
+    // SAVED EVENT
+    else {
+      setEventName(activeEvent.title + "");
+      setStartDate(dayjs(activeEvent.start + ""));
+      setEndDate(dayjs(activeEvent.end + ""));
+      setActiveColor("orange"); /// TODO: convert colors #f58546 into names
+      setActiveFont(activeEvent.font + "");
+    }
+  }, [activeEvent]);
 
   /*  ****** design props for modal ******  */
   const theme = createTheme({
     palette: {
       primary: {
-        main: COLORS.purple,
+        main: `${COLORS[activeColor as keyof typeof COLORS]}`,
       },
     },
   });
@@ -83,22 +112,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
       >
         <div className="p-6 overflow-visible relative">
           {/* ------ LABEL of EVENT DATA ------ */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <CalendarIcon style={{ color: COLORS.purple }} />
-              </div>
-              {/* meaning of color label */}
-              <div className="text-dark-gray">
-                {LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS]
-                  .meaning || LEGEND_COLORS.purple.meaning}
-              </div>
-            </div>
-            {/* delete event */}
-            <div>
-              <DeleteIcon style={{ color: "gray" }} />
-            </div>
-          </div>
+          <FormHeader activeColor={activeColor} />
           {/* separator line */}
           <div
             className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}
@@ -107,6 +121,12 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
           {/* ------- FORM for EVENT DATA ------- */}
           <Form
             setOpen={setOpen}
+            eventName={eventName}
+            setEventName={setEventName}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
             activeColor={activeColor}
             setActiveColor={setActiveColor}
             activeFont={activeFont}

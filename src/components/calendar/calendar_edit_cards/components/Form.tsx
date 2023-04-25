@@ -1,14 +1,16 @@
 import { Dispatch, useState } from "react";
-import { LEGEND_COLORS } from "../../../../lib/constants";
 import DatePicker from "./DatePicker";
 import { SetStateAction, useAtom } from "jotai";
-import { now, selectedDateAtom } from "../../../../lib/atoms/globalAtoms";
-import { Dayjs } from "dayjs";
 import {
-  getDateFromFormatted,
-  getFormattedDateForDBInsertion,
-} from "../../../../lib/db/dbUtils";
-import { EVENTS } from "../../../../lib/db/eventsData";
+  eventsAtom,
+  now,
+  selectedDatesAtom,
+} from "../../../../lib/atoms/globalAtoms";
+import dayjs, { Dayjs } from "dayjs";
+import { getDateFromFormatted } from "../../../../lib/db/dbUtils";
+import { v4 as uuidv4 } from "uuid";
+import ColorAndFontPicker from "./ColorAndFontPicker";
+import NamePicker from "./NamePicker";
 
 interface IForm {
   activeColor: string;
@@ -25,22 +27,22 @@ const Form = ({
   activeFont,
   setActiveFont,
 }: IForm) => {
-  const [selectedDate] = useAtom(selectedDateAtom);
+  const [selectedDates] = useAtom(selectedDatesAtom);
 
   /* ---------------------------------------------------- form data states */
   const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    getDateFromFormatted(selectedDate) || getDateFromFormatted(now)
+    selectedDates.start || getDateFromFormatted(now)
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    getDateFromFormatted(selectedDate)?.add(4, "hour") ||
-      getDateFromFormatted(now)!.add(4, "hour")
+    selectedDates.end || getDateFromFormatted(now)
   );
+  const [events, setEvents] = useAtom(eventsAtom);
 
-  /* ---------------------------------------------------- form validation */
+  /* ------------------------------------------------------ form validation */
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emptyName, setEmptyName] = useState(true);
-  const [errorDate, setErrorDate] = useState(false);
+  const [errorDate, setErrorDate] = useState(startDate! > endDate!);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,43 +53,31 @@ const Form = ({
       return;
     }
     if (errorDate) return;
-    const dbObj = getFormattedDateForDBInsertion(
-      eventName,
-      startDate,
-      endDate,
-      activeColor,
-      activeFont
-    );
-    EVENTS.push(dbObj);
-    console.log(EVENTS);
+    const dbObj = {
+      id: uuidv4() + "",
+      title: eventName,
+      start: dayjs(startDate).utc().format(),
+      end: dayjs(endDate).utc().format(),
+      color: activeColor,
+      font: activeFont,
+    };
+    setEvents([...events, dbObj]);
+    //alert(JSON.stringify(EVENTS));
     setOpen(false);
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
       {/* ------ NAME OF THE EVENT ------ */}
-      <div className="pt-3 pb-7 w-full">
-        <input
-          id="name"
-          name="name"
-          autoCorrect="off"
-          placeholder="What's the event?..."
-          className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} resize-none text-2xl bg-white-purple text-purple`}
-          autoFocus={true}
-          value={eventName}
-          onChange={(val) => {
-            setEventName(val.currentTarget.value);
-            setIsSubmitted(false);
-          }}
-        />
-        <small
-          className={`text-error px-1 ${
-            isSubmitted && emptyName ? "visible" : "hidden"
-          }`}
-        >
-          Missing name.
-        </small>
-      </div>
+      <NamePicker
+        activeFont={activeFont}
+        activeColor={activeColor}
+        eventName={eventName}
+        setEventName={setEventName}
+        isSubmitted={isSubmitted}
+        setIsSubmitted={setIsSubmitted}
+        emptyName={emptyName}
+      />
 
       {/* ------ DATE OF THE EVENT ------ */}
       <DatePicker
@@ -99,37 +89,13 @@ const Form = ({
         setErrorDate={setErrorDate}
       />
 
-      {/* ------ colors ------ */}
+      {/* ------ COLOR & FONT OF THE EVENT ------ */}
       <div className="flex justify-between items-center">
-        <div className="flex mr-2">
-          {LEGEND_COLORS.map((color, i) => {
-            return (
-              <div key={i} className="flex items-center text-xs text-gray py-1">
-                <div
-                  onClick={() => setActiveColor(color.name)}
-                  className={`${color.colorClass} ${
-                    color.name === activeColor && "color-active"
-                  } rounded-full w-5 h-5 mr-2 hover:scale-110 hover:cursor-pointer transition-all`}
-                ></div>
-              </div>
-            );
-          })}
-          {/* ------ font ------ */}
-          <div className="text-gray font-bold text-lg flex items-baseline">
-            <div
-              onClick={() => setActiveFont("font-global")}
-              className="w-5 h-5 font-global flex justify-center hover:text-purple hover:cursor-pointer transition-all"
-            >
-              A
-            </div>
-            <div
-              onClick={() => setActiveFont("font-handwritten")}
-              className="w-5 h-5 font-handwritten flex justify-center self-baseline hover:text-purple hover:cursor-pointer transition-all"
-            >
-              A
-            </div>
-          </div>
-        </div>
+        <ColorAndFontPicker
+          activeColor={activeColor}
+          setActiveColor={setActiveColor}
+          setActiveFont={setActiveFont}
+        />
 
         {/* ------ save event ------ */}
         <button type="submit" className="gen-link">

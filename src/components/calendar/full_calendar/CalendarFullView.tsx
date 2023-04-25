@@ -3,23 +3,22 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS, createEventId } from "../../../lib/db/eventsData";
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import {
   calendarAPIAtom,
-  selectedDateAtom,
+  eventsAtom,
+  selectedDatesAtom,
 } from "../../../lib/atoms/globalAtoms";
 import EditModal from "../calendar_edit_cards/EditModal";
 import dayjs from "dayjs";
 
 export const CalendarFullView = () => {
-  const [events, setEvents] = useState<EventApi[]>([]);
-  const [eventsObj, setEventsObj] = useState([]);
+  const [events] = useAtom(eventsAtom);
   const calendarRef = useRef<FullCalendar>(null);
-  const [calendarAPI, setCalendarAPI] = useAtom(calendarAPIAtom);
-  const [open, setOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
+  const [, setCalendarAPI] = useAtom(calendarAPIAtom);
+  const [open, setOpen] = useState(false); // open or close edit modal
+  const [, setSelectedDate] = useAtom(selectedDatesAtom);
 
   useEffect(() => {
     setCalendarAPI(calendarRef.current!.getApi());
@@ -32,35 +31,26 @@ export const CalendarFullView = () => {
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     const { start, end } = selectInfo;
-    setSelectedDate(dayjs(start));
+    setSelectedDate({ start: dayjs(start), end: dayjs(end) });
     setOpen(true);
-    console.log(start, end);
-
-    // let title = prompt("Please enter a new title for your event");
-    // let calendarApi = selectInfo.view.calendar;
-    // console.log(calendarAPI?.getEvents);
-
-    // calendarApi.unselect(); // clear date selection
-
-    // if (title) {
-    //   calendarApi.addEvent({
-    //     id: createEventId(),
-    //     title,
-    //     start: selectInfo.startStr,
-    //     end: selectInfo.endStr,
-    //     allDay: selectInfo.allDay,
-    //   });
-    // }
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    if (confirm(`Delete the event '${clickInfo.event.title}'?`)) {
-      clickInfo.event.remove();
-    }
+    const [event] = events.filter((event) => {
+      return event.id === clickInfo.event.id;
+    });
+    setSelectedDate({
+      start: dayjs(event.start + ""),
+      end: dayjs(event.end + ""),
+    });
+    setOpen(true);
+    // if (confirm(`Delete the event '${clickInfo.event.title}'?`)) {
+    //   clickInfo.event.remove();
+    // }
   };
 
   const handleEvents = (events: EventApi[]) => {
-    setEvents([...events]);
+    //setEvents([...events]);
   };
 
   return (
@@ -70,6 +60,7 @@ export const CalendarFullView = () => {
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         locale={"en-gb"}
+        timeZone="Europe/Prague"
         headerToolbar={{
           left: "prev,next today",
           center: "title",
@@ -79,16 +70,19 @@ export const CalendarFullView = () => {
         editable={true}
         selectable={true}
         selectMirror={true}
+        unselectAuto={true}
         dayMaxEvents={true}
         weekends={true}
         views={{
-          dayGridMonth: { titleFormat: { year: "numeric", month: "long" } },
+          dayGridMonth: {
+            titleFormat: { year: "numeric", month: "long" },
+          },
           dayGridWeek: {
             titleFormat: { year: "numeric", month: "long", day: "2-digit" },
           },
         }}
-        events={eventsObj}
-        initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+        events={events}
+        //initialEvents={EVENTS} // alternatively, use the `events` setting to fetch from a feed
         select={handleDateSelect}
         //eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}

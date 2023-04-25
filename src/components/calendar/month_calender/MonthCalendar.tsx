@@ -8,7 +8,7 @@ import {
 import {
   calendarAPIAtom,
   now,
-  selectedDateAtom,
+  selectedDatesAtom,
 } from "../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
 import { getFormattedDateData } from "../../../lib/db/dbUtils";
@@ -35,7 +35,7 @@ const MonthCalendar = ({
   setCurrentOtherMonthData,
 }: ICalenderProps) => {
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);
-  const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
+  const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
   const [calendarAPI] = useAtom(calendarAPIAtom);
 
   useEffect(() => {
@@ -45,8 +45,9 @@ const MonthCalendar = ({
 
   function handleSelection(d: IFormattedObj) {
     const date = dayjs(d.origFormat);
-    if (selectedDate?.isSame(date)) setSelectedDate(null);
-    else setSelectedDate(date);
+    if (selectedDates.start?.isSame(date))
+      setSelectedDates({ start: null, end: null });
+    else setSelectedDates({ start: date, end: date });
     calendarAPI?.gotoDate(getFormattedDateData(date)!.date);
     setCurrentOtherMonthData(date);
     setCurrentMonthData(date);
@@ -94,13 +95,15 @@ const MonthCalendar = ({
                 ? "px-2 py-1 border-t border-l border-light-gray"
                 : "my-1"
             } ${fullScreen && d.isCurrentDay && "today-hl"} ${
-              fullScreen && selectedDate?.isSame(d.origFormat) && "selected-hl"
+              fullScreen &&
+              selectedDates.start?.isSame(d.origFormat) &&
+              "selected-hl"
             }`}
           >
             <span
               className={`${
                 !d.isCurrentMonth ? "disabled" : d.isCurrentDay ? "today" : ""
-              } ${selectedDate?.isSame(d.origFormat) && "selected"}
+              } ${selectedDates.start?.isSame(d.origFormat) && "selected"}
               `}
             >
               {d.day}

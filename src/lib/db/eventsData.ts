@@ -1,95 +1,71 @@
 import { v4 as uuidv4 } from "uuid";
-
 import { EventInput } from "@fullcalendar/core";
-
-let eventGuid = 0;
-let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
-
-export const INITIAL_EVENTS: EventInput[] = [
-  {
-    id: createEventId(),
-    title: "All-day event",
-    start: "2023-04-20" + "T15:00:25",
-    end: "2023-04-25" + "T16:15:25",
-  },
-  {
-    id: createEventId(),
-    title: "Timed event",
-    start: todayStr + "T12:00:00",
-  },
-  {
-    id: createEventId(),
-    title: "Multiple day Event event",
-    start: todayStr + "T12:00:00",
-  },
-];
-
-export function createEventId() {
-  return String(eventGuid++);
-}
+import { COLORS, FONTS } from "../themeHardcoded";
 
 /**
- * This is a MOCK database, where user input is saved as an Event (just to show functionality).
- * In production, data would be saved in a database.
+ * This is a MOCK database obj with initial data.
  * */
 
-export interface IEvents {
-  id: string;
-  name: string;
-  dateStart: string;
-  dateEnd: string;
-  hourStart: number[];
-  hourEnd: number[];
-  color: string;
-  font: string;
-}
-
-export const EVENTS = [
+export const EVENTS: EventInput[] = [
   {
     id: uuidv4(),
-    name: "No More Dreaming Now",
-    dateStart: "2023-04-03",
-    dateEnd: "2023-04-03",
-    hourStart: [9, 30],
-    hourEnd: [15, 0],
-    color: "green",
-    font: "bg-handwritten",
+    title: "Celine Dion stil hasn't come.",
+    start: "2023-03-30" + "T12:00:00",
+    color: COLORS.orange,
   },
   {
     id: uuidv4(),
-    name: "It's always sunny in Philadeplphia",
-    dateStart: "2023-04-03",
-    dateEnd: "2023-04-03",
-    hourStart: [17, 15],
-    hourEnd: [20, 30],
-    color: "white",
-    font: "bg-global",
+    title: "Well, this was interesting.",
+    start: "2023-04-11" + "T12:00:00",
+    color: COLORS.purple,
   },
   {
     id: uuidv4(),
-    name: "Surprise suprise, the children are here",
-    dateStart: "2023-04-03",
-    dateEnd: "2023-04-03",
-    hourStart: [22, 0],
-    hourEnd: [23, 0],
-    color: "pink",
-    font: "bg-handwritten",
+    title: "Time zones suck.",
+    start: "2023-04-11" + "T13:00:00",
+    color: COLORS.green,
   },
   {
     id: uuidv4(),
-    name: "Rock For People",
-    dateStart: "2023-04-21",
-    dateEnd: "2023-04-22",
-    hourStart: [9, 0],
-    hourEnd: [12, 30],
-    color: "orange",
-    font: "bg-global",
+    title: "Another anti-government protest?",
+    start: "2023-04-11" + "T14:00:00",
+    color: COLORS.pink,
+  },
+  {
+    id: uuidv4(),
+    title: "April fools' is gone, but I'm still here.",
+    start: "2023-04-14" + "T18:00:00",
+    color: COLORS.green,
+  },
+  {
+    id: uuidv4(),
+    title: "Getting this all to work was harder than it seems.",
+    start: "2023-04-03" + "T18:52:02",
+    end: "2023-04-05" + "T12:52:00",
+    color: COLORS.green,
+    font: FONTS.handwritten,
+  },
+  {
+    id: uuidv4(),
+    title: "Even though, this was a pre-made component :'O.",
+    start: "2023-04-03" + "T20:05:02",
+    end: "2023-04-04" + "T13:00:00",
+    color: COLORS.orange,
+    font: FONTS.global,
+  },
+  {
+    id: uuidv4(),
+    title: "Does this color fit or not, I can't decide.",
+    start: "2023-04-17" + "T19:15:00",
+    end: "2023-04-20" + "T05:10:00",
+    color: COLORS.pink,
+  },
+  {
+    id: uuidv4(),
+    title: "Please, don't have bugs, I've suffered enough.",
+    start: "2023-04-20" + "T15:00:25",
+    end: "2023-04-25" + "T16:15:25",
+    color: COLORS.purple,
+    font: FONTS.handwritten,
   },
 ];
-//export const EVENTS = new Map<string, IEvents[]>(evData);
-
-// const map1 = new Map(
-//   evData.map(obj => {
-//     return [obj.id, obj.name, obj.dateStart, obj.dateEnd, obj.hourStart, obj.hourEnd, obj.color, obj.font] as [IEvents];
-//   }),
-// );

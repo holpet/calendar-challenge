@@ -1,6 +1,4 @@
 import dayjs, { Dayjs } from "dayjs";
-import { v4 as uuidv4 } from "uuid";
-import { IEvents } from "./eventsData";
 
 /* FORMATTER  */
 /* ------------------------------------------------------------------------------ */
@@ -42,29 +40,4 @@ export function getFormattedDateData(
     hours: [date.hour(), date.minute()],
   };
   return formattedData;
-}
-
-/* DB INSERTION - create object */
-/* ------------------------------------------------------------------------------ */
-
-export function getFormattedDateForDBInsertion(
-  eventName: string,
-  start: Dayjs,
-  end: Dayjs,
-  color: string,
-  font: string
-): IEvents {
-  const formattedDataStart = getFormattedDateData(start);
-  const formattedDataEnd = getFormattedDateData(end);
-  const dataObj = {
-    id: uuidv4(),
-    name: eventName,
-    dateStart: formattedDataStart!.date,
-    dateEnd: formattedDataEnd!.date,
-    hourStart: formattedDataStart!.hours,
-    hourEnd: formattedDataEnd!.hours,
-    color: color,
-    font: font,
-  };
-  return dataObj;
 }

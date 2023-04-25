@@ -1,6 +1,6 @@
 import { default as Info } from "@mui/icons-material/Info";
 import { colors } from "../SidePanel";
-import { LEGEND_COLORS } from "../../../lib/constants";
+import { LEGEND_COLORS } from "../../../lib/modal_utils/modalUtils";
 
 const Legend = () => {
   return (

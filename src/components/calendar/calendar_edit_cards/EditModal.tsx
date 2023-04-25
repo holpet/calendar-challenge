@@ -1,12 +1,13 @@
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import { SetStateAction, useState } from "react";
-import { useAtom } from "jotai";
-import { selectedDateAtom } from "../../../lib/atoms/globalAtoms";
 import { default as CalendarIcon } from "@mui/icons-material/EventAvailable";
 import { default as DeleteIcon } from "@mui/icons-material/DeleteOutline";
-import { LEGEND_COLORS, LEGEND_COLOR_NAMES } from "../../../lib/constants";
+import { LEGEND_COLORS } from "../../../lib/modal_utils/modalUtils";
 import Form from "./components/Form";
+import { COLORS } from "../../../lib/themeHardcoded";
+import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export interface DialogTitleProps {
   id: string;
@@ -20,37 +21,71 @@ interface IEditCardProps {
 }
 
 export default function EditModal({ open, setOpen }: IEditCardProps) {
-  const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [activeColor, setActiveColor] = useState(LEGEND_COLOR_NAMES.white);
-  const [activeFont, setActiveFont] = useState("font-global");
+  const [activeColor, setActiveColor] = useState(INIT_MODAL_DATA.color);
+  const [activeFont, setActiveFont] = useState(INIT_MODAL_DATA.font);
+
+  /*  ****** design props for modal ******  */
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: COLORS.purple,
+      },
+    },
+  });
+
+  const paperProps = {
+    sx: {
+      width: 600,
+      maxWidth: "75%",
+      minWidth: 200,
+    },
+    style: {
+      boxShadow: "rgba(100, 100, 111, 0.2) 0px 15px 29px 0px",
+      border: `10px solid ${
+        COLORS[activeColor as keyof typeof COLORS] || COLORS.purple
+      }`,
+      borderRadius: "20px",
+      backgroundColor: `#e8e5f9`, //"#e8e5f9",
+    },
+  };
+
+  const slotProps = {
+    backdrop: {
+      style: {
+        backgroundColor: "rgba(255,255,255,0.6)",
+      },
+    },
+  };
 
   function handleClose() {
     setOpen(false);
   }
 
+  /*  ****** -------------MODAL--------------- ******  */
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        PaperProps={paperProps} // see down
-        slotProps={slotProps} // see down
+        PaperProps={paperProps}
+        slotProps={slotProps}
       >
         <div className="p-6 overflow-visible relative">
           {/* ------ LABEL of EVENT DATA ------ */}
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="mr-2">
-                <CalendarIcon style={{ color: "#7e45db" }} />
+                <CalendarIcon style={{ color: COLORS.purple }} />
               </div>
-              {
-                LEGEND_COLORS.find((obj) => {
-                  return obj.name === activeColor;
-                })?.meaning
-              }
+              <div className="text-dark-gray">
+                {
+                  LEGEND_COLORS.find((obj) => {
+                    return obj.name === activeColor;
+                  })?.meaning
+                }
+              </div>
             </div>
             {/* delete event */}
             <div>
@@ -59,11 +94,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
           </div>
           {/* active color line */}
           <div
-            className={`flexbox ${
-              LEGEND_COLORS.find((obj) => {
-                return obj.name === activeColor;
-              })?.colorLineClass
-            } w-full h-2 mt-5`}
+            className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}
           ></div>
 
           {/* ------- FORM for EVENT DATA ------- */}
@@ -76,7 +107,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
           />
         </div>
       </BootstrapDialog>
-    </div>
+    </ThemeProvider>
   );
 }
 
@@ -88,26 +119,3 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-
-/*  ****** design props for modal ******  */
-const paperProps = {
-  sx: {
-    width: 600,
-    maxWidth: "75%",
-    minWidth: 200,
-    overflow: "visible",
-  },
-  style: {
-    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-    border: "1px solid #d9dce2",
-    backgroundColor: "#e8e5f9",
-  },
-};
-
-const slotProps = {
-  backdrop: {
-    style: {
-      backgroundColor: "rgba(255,255,255,0.5)",
-    },
-  },
-};

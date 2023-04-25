@@ -61,6 +61,7 @@ export const CalendarFullView = () => {
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         locale={"en-gb"}
         timeZone="Europe/Prague"
+        firstDay={1}
         headerToolbar={{
           left: "prev,next today",
           center: "title",

@@ -3,6 +3,7 @@ import dayjs, { Dayjs } from "dayjs";
 import locale from "dayjs/locale/en-gb";
 import { CalendarApi, EventInput } from "@fullcalendar/core/index.js";
 import { EVENTS } from "../db/eventsData";
+import { createNewEvent } from "../modal_utils/modalUtils";
 
 /* -------- set up calendar locale --------- */
 export const now = dayjs().locale({
@@ -17,3 +18,6 @@ export const selectedDatesAtom = atom<{
 }>({ start: null, end: null });
 export const calendarAPIAtom = atom<CalendarApi | null>(null);
 export const eventsAtom = atom<EventInput[]>(EVENTS);
+export const activeEventAtom = atom<EventInput>(
+  createNewEvent(new Date(), new Date())
+);

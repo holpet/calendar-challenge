@@ -4,14 +4,18 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useAtom } from "jotai";
 import {
+  activeEventAtom,
   calendarAPIAtom,
   eventsAtom,
   selectedDatesAtom,
 } from "../../../lib/atoms/globalAtoms";
 import EditModal from "../calendar_edit_cards/EditModal";
 import dayjs from "dayjs";
+import { COLORS, FONTS } from "../../../lib/themeHardcoded";
+import { createNewEvent } from "../../../lib/modal_utils/modalUtils";
 
 export const CalendarFullView = () => {
   const [events] = useAtom(eventsAtom);
@@ -19,6 +23,7 @@ export const CalendarFullView = () => {
   const [, setCalendarAPI] = useAtom(calendarAPIAtom);
   const [open, setOpen] = useState(false); // open or close edit modal
   const [, setSelectedDate] = useAtom(selectedDatesAtom);
+  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
 
   useEffect(() => {
     setCalendarAPI(calendarRef.current!.getApi());
@@ -29,13 +34,19 @@ export const CalendarFullView = () => {
     calendarApi.gotoDate("2019-10-12"); // call a method on the Calendar object
   };
 
+  /* Select a date from calendar */
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     const { start, end } = selectInfo;
-    setSelectedDate({ start: dayjs(start), end: dayjs(end) });
+    // NEW EVENT
+    const newEvent = createNewEvent(start, end);
+    setActiveEvent(newEvent);
+    //setSelectedDate({ start: dayjs(start), end: dayjs(end) });
     setOpen(true);
   };
 
+  /* Click on an event in the calendar */
   const handleEventClick = (clickInfo: EventClickArg) => {
+    // EXISTING EVENT
     const [event] = events.filter((event) => {
       return event.id === clickInfo.event.id;
     });

@@ -8,6 +8,8 @@ import Form from "./components/Form";
 import { COLORS } from "../../../lib/themeHardcoded";
 import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useAtom } from "jotai";
+import { activeEventAtom } from "../../../lib/atoms/globalAtoms";
 
 export interface DialogTitleProps {
   id: string;
@@ -21,8 +23,15 @@ interface IEditCardProps {
 }
 
 export default function EditModal({ open, setOpen }: IEditCardProps) {
-  const [activeColor, setActiveColor] = useState(INIT_MODAL_DATA.color);
-  const [activeFont, setActiveFont] = useState(INIT_MODAL_DATA.font);
+  const [activeColor, setActiveColor] = useState<string>(INIT_MODAL_DATA.color);
+  const [activeFont, setActiveFont] = useState<string>(INIT_MODAL_DATA.font);
+
+  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
+
+  function isALegendProperty(str: string): str is keyof typeof LEGEND_COLORS {
+    //alert(`str: ${str}`);
+    return ["orange", "purple", "white", "green", "pink"].includes(str);
+  }
 
   /*  ****** design props for modal ******  */
   const theme = createTheme({
@@ -41,11 +50,9 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
     },
     style: {
       boxShadow: "rgba(100, 100, 111, 0.2) 0px 15px 29px 0px",
-      border: `10px solid ${
-        COLORS[activeColor as keyof typeof COLORS] || COLORS.purple
-      }`,
+      border: `10px solid ${COLORS.purple}`,
       borderRadius: "20px",
-      backgroundColor: `#e8e5f9`, //"#e8e5f9",
+      backgroundColor: `${COLORS["purple-300"]}`,
     },
   };
 
@@ -79,12 +86,10 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
               <div className="mr-2">
                 <CalendarIcon style={{ color: COLORS.purple }} />
               </div>
+              {/* meaning of color label */}
               <div className="text-dark-gray">
-                {
-                  LEGEND_COLORS.find((obj) => {
-                    return obj.name === activeColor;
-                  })?.meaning
-                }
+                {LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS]
+                  .meaning || LEGEND_COLORS.purple.meaning}
               </div>
             </div>
             {/* delete event */}
@@ -92,7 +97,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
               <DeleteIcon style={{ color: "gray" }} />
             </div>
           </div>
-          {/* active color line */}
+          {/* separator line */}
           <div
             className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}
           ></div>

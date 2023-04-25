@@ -9,7 +9,7 @@ import { COLORS, FONTS } from "../themeHardcoded";
 export const EVENTS: EventInput[] = [
   {
     id: uuidv4(),
-    title: "Celine Dion stil hasn't come.",
+    title: "Celine Dion still hasn't come.",
     start: "2023-03-30" + "T12:00:00",
     color: COLORS.orange,
   },
@@ -40,7 +40,7 @@ export const EVENTS: EventInput[] = [
   {
     id: uuidv4(),
     title: "Getting this all to work was harder than it seems.",
-    start: "2023-04-03" + "T18:52:02",
+    start: "2023-04-04" + "T18:52:02",
     end: "2023-04-05" + "T12:52:00",
     color: COLORS.green,
     font: FONTS.handwritten,
@@ -56,7 +56,7 @@ export const EVENTS: EventInput[] = [
   {
     id: uuidv4(),
     title: "Does this color fit or not, I can't decide.",
-    start: "2023-04-17" + "T19:15:00",
+    start: "2023-04-19" + "T19:15:00",
     end: "2023-04-20" + "T05:10:00",
     color: COLORS.pink,
   },

@@ -12,7 +12,7 @@ const Legend = () => {
         <h3 className="text-right font-light text-base">...Legend</h3>
       </div>
       <div className="px-2">
-        {LEGEND_COLORS.map((color, i) => {
+        {Object.values(LEGEND_COLORS).map((color, i) => {
           return (
             <div key={i} className="flex items-center text-xs text-gray py-1">
               <div

@@ -1,60 +1,54 @@
+import { EventInput } from "@fullcalendar/core/index.js";
 import { COLORS, FONTS } from "../themeHardcoded";
+import { v4 as uuidv4 } from "uuid";
 
 export const INIT_MODAL_DATA = {
   title: "",
-  color: COLORS.purple,
-  font: FONTS.global,
+  color: "purple",
+  font: "bg-global",
 };
 
-export function populateModal() {}
-
-export function getTextClass(activeColor: string) {
-  return LEGEND_COLORS.filter((color) => {
-    return color.name === activeColor;
-  })[0].colorTextClass;
+export function createNewEvent(start: Date, end: Date) {
+  return {
+    id: uuidv4(),
+    title: "",
+    start: start,
+    end: end,
+    color: COLORS.purple,
+    font: FONTS.global,
+  };
 }
 
-export const LEGEND_COLOR_NAMES = {
-  orange: "orange",
-  green: "green",
-  pink: "pink",
-  white: "white",
-  purple: "purple",
-};
+export function populateModal(event: EventInput) {}
 
-export const LEGEND_COLORS = [
-  {
-    name: LEGEND_COLOR_NAMES.orange,
+export const LEGEND_COLORS = {
+  orange: {
     meaning: "High Priority",
     colorClass: "bg-orange",
     colorLineClass: "bg-orange",
     colorTextClass: "text-orange",
   },
-  {
-    name: LEGEND_COLOR_NAMES.green,
+  green: {
     meaning: "Mid Priority",
     colorClass: "bg-green",
     colorLineClass: "bg-green",
     colorTextClass: "text-green",
   },
-  {
-    name: LEGEND_COLOR_NAMES.pink,
+  pink: {
     meaning: "Special Event",
     colorClass: "bg-pink",
     colorLineClass: "bg-pink",
     colorTextClass: "text-pink",
   },
-  {
-    name: LEGEND_COLOR_NAMES.purple,
+  purple: {
     meaning: "Standard Event",
     colorClass: "bg-purple",
     colorLineClass: "bg-purple",
     colorTextClass: "text-purple",
   },
-  {
-    name: LEGEND_COLOR_NAMES.white,
+  white: {
     meaning: "?",
     colorClass: "bg-white border border-light-gray",
     colorLineClass: "bg-white",
   },
-];
+};

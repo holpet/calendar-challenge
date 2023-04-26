@@ -42,7 +42,7 @@ const Form = ({
 
   /* ------------------------------------------------------ EVENTS "db" obj */
   const [events, setEvents] = useAtom(eventsAtom);
-  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
+  const [activeEvent] = useAtom(activeEventAtom);
 
   /* -------------------------------------------------------- SUBMIT FORM */
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -71,7 +71,7 @@ const Form = ({
     }
     // EDITED EVENT
     else {
-      const eventsWithMutatedState = events.map((event) =>
+      const eventsAfterEdit = events.map((event) =>
         event.id === activeEvent.id
           ? {
               ...event,
@@ -83,7 +83,7 @@ const Form = ({
             }
           : event
       );
-      setEvents(eventsWithMutatedState);
+      setEvents(eventsAfterEdit);
     }
     setOpen(false);
   }

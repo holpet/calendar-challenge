@@ -54,7 +54,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
       setActiveColor(INIT_MODAL_DATA.color);
       setActiveFont(INIT_MODAL_DATA.font);
     }
-    // SAVED EVENT
+    // EDITED EVENT
     else {
       setEventName(activeEvent.title + "");
       setStartDate(dayjs(activeEvent.start + ""));
@@ -116,7 +116,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
       >
         <div className="p-6 overflow-visible relative">
           {/* ------ LABEL of EVENT DATA ------ */}
-          <FormHeader activeColor={activeColor} />
+          <FormHeader activeColor={activeColor} setOpen={setOpen} />
           {/* separator line */}
           <div
             className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}

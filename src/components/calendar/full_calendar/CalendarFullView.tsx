@@ -19,7 +19,7 @@ export const CalendarFullView = () => {
   const calendarRef = useRef<FullCalendar>(null);
   const [, setCalendarAPI] = useAtom(calendarAPIAtom);
   const [open, setOpen] = useState(false); // open or close edit modal
-  const [, setSelectedDate] = useAtom(selectedDatesAtom);
+  const [selectedDates, setSelectedDate] = useAtom(selectedDatesAtom);
   const [, setActiveEvent] = useAtom(activeEventAtom);
 
   useEffect(() => {

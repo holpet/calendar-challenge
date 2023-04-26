@@ -3,7 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimeField } from "@mui/x-date-pickers/DateTimeField";
 import dayjs, { Dayjs } from "dayjs";
 import { Dispatch, SetStateAction } from "react";
-import { COLORS } from "../../../../lib/themeHardcoded";
+import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
 
 interface IDatePickerProps {
   activeColor: string;
@@ -26,12 +26,13 @@ export default function DatePicker({
 }: IDatePickerProps) {
   const themeSx = {
     input: {
-      color: COLORS.gray,
+      color: TO_HEX_COLORS.gray,
       fontWeight: "bold",
       textAlign: "center",
       fontSize: "large",
       letterSpacing: "0.05rem",
-      backgroundColor: COLORS[(activeColor + "-100") as keyof typeof COLORS],
+      backgroundColor:
+        TO_HEX_COLORS[(activeColor + "-100") as keyof typeof TO_HEX_COLORS],
     },
     "& .MuiInputBase-root.Mui-focused .MuiInputBase-input": {
       color: "#8f98aa",

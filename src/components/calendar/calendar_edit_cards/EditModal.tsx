@@ -2,7 +2,11 @@ import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
-import { COLORS } from "../../../lib/themeHardcoded";
+import {
+  TO_HEX_COLORS,
+  TO_NAMED_COLORS,
+  getColorNameFromHex,
+} from "../../../lib/themeHardcoded";
 import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import FormHeader from "./components/FormHeader";
@@ -27,46 +31,47 @@ interface IEditCardProps {
 }
 
 export default function EditModal({ open, setOpen }: IEditCardProps) {
-  const [selectedDates] = useAtom(selectedDatesAtom);
-  const [activeEvent] = useAtom(activeEventAtom);
+  const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
+  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
 
-  /* ---------------------------------------------------- form data states */
+  /* ---------------------------------------------------- set form data */
   const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    selectedDates.start || getDateFromFormatted(now)
+    selectedDates.start || now
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    selectedDates.end || getDateFromFormatted(now)
+    selectedDates.end || now
   );
   const [activeColor, setActiveColor] = useState<string>(INIT_MODAL_DATA.color);
   const [activeFont, setActiveFont] = useState<string>(INIT_MODAL_DATA.font);
 
-  /* ------------------------------------------------- end form data states */
+  /* ------------------------------------------------- end set form data */
 
   useEffect(() => {
     // NEW EVENT
     if (activeEvent === null) {
+      //alert(`${JSON.stringify(selectedDates)}`);
+      //if (selectedDates === null || !selectedDates) return;
       setEventName("");
-      setStartDate(selectedDates.start);
-      setEndDate(selectedDates.end);
-      setActiveColor(INIT_MODAL_DATA.color);
-      setActiveFont(INIT_MODAL_DATA.font);
+      setStartDate(dayjs(selectedDates.start).add(6, "hour"));
+      setEndDate(dayjs(selectedDates.end).add(10, "hour"));
     }
     // SAVED EVENT
     else {
+      //alert(`${getColorNameFromHex(activeColor)}`);
       setEventName(activeEvent.title + "");
       setStartDate(dayjs(activeEvent.start + ""));
       setEndDate(dayjs(activeEvent.end + ""));
-      setActiveColor("orange"); /// TODO: convert colors #f58546 into names
+      setActiveColor("green");
       setActiveFont(activeEvent.font + "");
     }
-  }, [activeEvent]);
+  }, [activeEvent, selectedDates]);
 
   /*  ****** design props for modal ******  */
   const theme = createTheme({
     palette: {
       primary: {
-        main: `${COLORS[activeColor as keyof typeof COLORS]}`,
+        main: `${TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS]}`,
       },
     },
   });
@@ -79,10 +84,12 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
     },
     style: {
       boxShadow: "rgba(100, 100, 111, 0.2) 0px 15px 29px 0px",
-      border: `10px solid ${COLORS[activeColor as keyof typeof COLORS]}`,
+      border: `10px solid ${
+        TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS]
+      }`,
       borderRadius: "20px",
       backgroundColor: `${
-        COLORS[(activeColor + "-300") as keyof typeof COLORS]
+        TO_HEX_COLORS[(activeColor + "-300") as keyof typeof TO_HEX_COLORS]
       }`,
     },
   };

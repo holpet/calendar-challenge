@@ -1,7 +1,7 @@
 import { default as CalendarIcon } from "@mui/icons-material/EventAvailable";
 import { default as DeleteIcon } from "@mui/icons-material/DeleteOutline";
 import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
-import { COLORS } from "../../../../lib/themeHardcoded";
+import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
 
 interface IFormHeaderProps {
   activeColor: string;
@@ -12,7 +12,7 @@ const FormHeader = ({ activeColor }: IFormHeaderProps) => {
     <div className="flex items-center justify-between">
       <div className="flex items-center">
         <div className="mr-2">
-          <CalendarIcon style={{ color: COLORS.purple }} />
+          <CalendarIcon style={{ color: TO_HEX_COLORS.purple }} />
         </div>
         {/* meaning of color label */}
         <div className="text-dark-gray">

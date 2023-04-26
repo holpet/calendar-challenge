@@ -1,6 +1,4 @@
 import { CalendarFullView } from "./components/calendar/full_calendar/CalendarFullView";
-import MonthCalendar from "./components/calendar/month_calender/variants/MainMonthCalendar";
-import Header from "./components/header/Header";
 import SidePanel from "./components/side_panel/SidePanel";
 
 /* Design notes: */

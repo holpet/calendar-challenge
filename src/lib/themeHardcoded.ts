@@ -1,17 +1,9 @@
 /* These values serve for components that have to be customized with inline styles to override out their initial styling */
 
-export interface ICOLORS {
-  orange: string;
-  purple: string;
-  lightPurple: string;
-  gray: string;
-  lightGray: string;
-  green: string;
-  pink: string;
-}
+import { INIT_MODAL_DATA } from "./modal_utils/modalUtils";
 
 // same can be found in tailwind.config.js
-export const COLORS = {
+export const TO_HEX_COLORS = {
   orange: "#ff7f00",
   "orange-300": "#ffe5cb",
   "orange-100": "#fff5ec",
@@ -32,4 +24,30 @@ export const COLORS = {
 export const FONTS = {
   global: "text-global",
   handwritten: "text-handwritten",
+};
+
+export function getColorNameFromHex(hex: string) {
+  const name = Object.keys(TO_HEX_COLORS).find(
+    (key) => TO_HEX_COLORS[key as keyof typeof TO_HEX_COLORS] === hex
+  );
+  if (!name) return INIT_MODAL_DATA.color;
+  return name;
+}
+
+/* translation of hardcoded colors  */
+export const TO_NAMED_COLORS = {
+  "#ff7f00": "orange",
+  "#ffe5cb": "orange-300",
+  "#fff5ec": "orange-100",
+  "#7e45db": "purple",
+  "#e8e5f9": "purple-300",
+  "#f3f1fc": "purple-100",
+  "#57b914": "green",
+  "#d6f8be": "green-300",
+  "#eefce4": "green-100",
+  "#de148b": "pink",
+  "#fcd6ec": "pink-300",
+  "#fde5f3": "pink-100",
+  "#8f98aa": "gray",
+  "#d9dce2": "light-gray",
 };

@@ -1,7 +1,7 @@
 import { default as Add } from "@mui/icons-material/AddCircle";
-import { colors } from "../SidePanel";
 import EditModal from "../../calendar/calendar_edit_cards/EditModal";
 import { useState } from "react";
+import { TO_HEX_COLORS } from "../../../lib/themeHardcoded";
 
 const Create = () => {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ const Create = () => {
       >
         <h3 className="ml-1 font-light text-base">Create...</h3>
         <div className="hover:scale-105 transition-all">
-          <Add fontSize="large" sx={{ color: `${colors.purple1}` }} />
+          <Add fontSize="large" sx={{ color: `${TO_HEX_COLORS.purple}` }} />
         </div>
       </div>
     </>

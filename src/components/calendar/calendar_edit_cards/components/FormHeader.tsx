@@ -1,10 +1,16 @@
 import { default as CalendarIcon } from "@mui/icons-material/EventAvailable";
 import { default as DeleteIcon } from "@mui/icons-material/DeleteOutline";
+import { default as Restart } from "@mui/icons-material/RestartAlt";
 import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
 import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
 import { useAtom } from "jotai";
-import { activeEventAtom, eventsAtom } from "../../../../lib/atoms/globalAtoms";
+import {
+  activeEventAtom,
+  eventsAtom,
+  selectedDatesAtom,
+} from "../../../../lib/atoms/globalAtoms";
 import { Dispatch, SetStateAction } from "react";
+import dayjs from "dayjs";
 
 interface IFormHeaderProps {
   activeColor: string;
@@ -13,7 +19,8 @@ interface IFormHeaderProps {
 
 const FormHeader = ({ activeColor, setOpen }: IFormHeaderProps) => {
   const [events, setEvents] = useAtom(eventsAtom);
-  const [activeEvent] = useAtom(activeEventAtom);
+  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
+  const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
 
   function handleDelete() {
     if (activeEvent !== null) {
@@ -23,6 +30,20 @@ const FormHeader = ({ activeColor, setOpen }: IFormHeaderProps) => {
       setEvents(eventsAfterDelete);
     }
     setOpen(false);
+  }
+
+  function handleReset() {
+    if (activeEvent === null)
+      setSelectedDates({
+        start: dayjs(selectedDates.start).startOf("day"),
+        end: dayjs(selectedDates.end).startOf("day"),
+      });
+    else
+      setSelectedDates({
+        start: dayjs(activeEvent.start + "").startOf("day"),
+        end: dayjs(activeEvent.end + "").startOf("day"),
+      });
+    setActiveEvent(null);
   }
 
   return (
@@ -37,9 +58,20 @@ const FormHeader = ({ activeColor, setOpen }: IFormHeaderProps) => {
             LEGEND_COLORS.purple.meaning}
         </div>
       </div>
-      {/* delete event */}
-      <div onClick={handleDelete} className="hover:cursor-pointer">
-        <DeleteIcon style={{ color: TO_HEX_COLORS.purple }} />
+      {/* reset & delete event */}
+      <div className="flex">
+        <div
+          onClick={handleReset}
+          className="hover:cursor-pointer hover:scale-105"
+        >
+          <Restart style={{ color: TO_HEX_COLORS.gray }} />
+        </div>
+        <div
+          onClick={handleDelete}
+          className="hover:cursor-pointer hover:scale-105"
+        >
+          <DeleteIcon style={{ color: TO_HEX_COLORS.purple }} />
+        </div>
       </div>
     </div>
   );

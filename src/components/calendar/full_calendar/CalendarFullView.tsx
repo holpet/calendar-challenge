@@ -2,7 +2,9 @@ import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import interactionPlugin, {
+  EventResizeDoneArg,
+} from "@fullcalendar/interaction";
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import {
@@ -32,8 +34,8 @@ export const CalendarFullView = () => {
     const { start, end } = selectInfo;
     // NEW EVENT
     setSelectedDate({
-      start: dayjs(start + ""),
-      end: dayjs(end + ""),
+      start: dayjs(start),
+      end: dayjs(end),
     });
     setActiveEvent(null);
     setOpen(true);
@@ -53,34 +55,22 @@ export const CalendarFullView = () => {
     setOpen(true);
   };
 
-  const handleDrop = (eventDropInfo: any) => {
+  const handleDropAndResize = (eventDropResizeInfo: any) => {
     // EDITED EVENT
     const [event] = events.filter((event) => {
-      return event.id === eventDropInfo.event.id;
+      return event.id === eventDropResizeInfo.event.id;
     });
-
-    // detect local timezone offset
-    //var localoffset = dayjs().getTimezoneOffset();
-    //alert(dayjs().utcOffset());
-    // "unadjust" date
-    //const ret = new Date(ret.valueOf() + localoffset * 60 * 1000);
-
-    //
     addEditedEventToDB(
       event.title + "",
-      dayjs(eventDropInfo.event.start + ""),
-      dayjs(eventDropInfo.event.end + ""),
+      dayjs(eventDropResizeInfo.event.start),
+      dayjs(eventDropResizeInfo.event.end),
       event.color + "",
       event.font,
-      eventDropInfo.event,
+      eventDropResizeInfo.event,
       events,
       setEvents
     );
   };
-
-  // const handleEvents = (events: EventApi[]) => {
-  //   //setEvents([...events]);
-  // };
 
   return (
     <div className="pb-6">
@@ -115,7 +105,8 @@ export const CalendarFullView = () => {
         select={handleDateSelect}
         //eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}
-        eventDrop={handleDrop}
+        eventDrop={handleDropAndResize}
+        eventResize={handleDropAndResize}
         /* you can update a remote database when these fire:
     eventAdd={function(){}}
     eventChange={function(){}}

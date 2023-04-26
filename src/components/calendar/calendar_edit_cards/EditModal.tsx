@@ -4,13 +4,11 @@ import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
 import {
   TO_HEX_COLORS,
-  TO_NAMED_COLORS,
   getColorNameFromHex,
 } from "../../../lib/themeHardcoded";
 import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import FormHeader from "./components/FormHeader";
-import { getDateFromFormatted } from "../../../lib/db/dbUtils";
 import {
   activeEventAtom,
   now,

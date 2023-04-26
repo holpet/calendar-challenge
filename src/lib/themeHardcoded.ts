@@ -33,21 +33,3 @@ export function getColorNameFromHex(hex: string) {
   if (!name) return INIT_MODAL_DATA.color;
   return name;
 }
-
-/* translation of hardcoded colors  */
-export const TO_NAMED_COLORS = {
-  "#ff7f00": "orange",
-  "#ffe5cb": "orange-300",
-  "#fff5ec": "orange-100",
-  "#7e45db": "purple",
-  "#e8e5f9": "purple-300",
-  "#f3f1fc": "purple-100",
-  "#57b914": "green",
-  "#d6f8be": "green-300",
-  "#eefce4": "green-100",
-  "#de148b": "pink",
-  "#fcd6ec": "pink-300",
-  "#fde5f3": "pink-100",
-  "#8f98aa": "gray",
-  "#d9dce2": "light-gray",
-};

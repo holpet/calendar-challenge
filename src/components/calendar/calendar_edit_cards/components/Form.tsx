@@ -1,11 +1,12 @@
 import { Dispatch, useState } from "react";
 import DatePicker from "./DatePicker";
 import { SetStateAction, useAtom } from "jotai";
-import { eventsAtom } from "../../../../lib/atoms/globalAtoms";
+import { activeEventAtom, eventsAtom } from "../../../../lib/atoms/globalAtoms";
 import dayjs, { Dayjs } from "dayjs";
 import { v4 as uuidv4 } from "uuid";
 import ColorAndFontPicker from "./ColorAndFontPicker";
 import NamePicker from "./NamePicker";
+import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
 
 interface IForm {
   setOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -39,10 +40,14 @@ const Form = ({
   const [emptyName, setEmptyName] = useState(true);
   const [errorDate, setErrorDate] = useState(startDate! > endDate!);
 
+  /* ------------------------------------------------------ EVENTS "db" obj */
   const [events, setEvents] = useAtom(eventsAtom);
+  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
 
+  /* -------------------------------------------------------- SUBMIT FORM */
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // validate form
     if (!startDate || !endDate) return;
     if (eventName === "") {
       setIsSubmitted(true);
@@ -50,16 +55,36 @@ const Form = ({
       return;
     }
     if (errorDate) return;
-    const dbObj = {
-      id: uuidv4() + "",
-      title: eventName,
-      start: dayjs(startDate).utc().format(),
-      end: dayjs(endDate).utc().format(),
-      color: activeColor,
-      font: activeFont,
-    };
-    setEvents([...events, dbObj]);
-    //alert(JSON.stringify(EVENTS));
+
+    /* save event into the "db" +++++++++++++++++++++ */
+    // NEW EVENT
+    if (activeEvent === null) {
+      const newEvent = {
+        id: uuidv4() + "",
+        title: eventName,
+        start: dayjs(startDate).format(),
+        end: dayjs(endDate).format(),
+        color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
+        font: activeFont,
+      };
+      setEvents([...events, newEvent]);
+    }
+    // EDITED EVENT
+    else {
+      const eventsWithMutatedState = events.map((event) =>
+        event.id === activeEvent.id
+          ? {
+              ...event,
+              title: eventName,
+              start: dayjs(startDate).format(),
+              end: dayjs(endDate).format(),
+              color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
+              font: activeFont,
+            }
+          : event
+      );
+      setEvents(eventsWithMutatedState);
+    }
     setOpen(false);
   }
 

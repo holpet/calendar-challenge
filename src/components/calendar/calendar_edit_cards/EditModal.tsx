@@ -31,8 +31,8 @@ interface IEditCardProps {
 }
 
 export default function EditModal({ open, setOpen }: IEditCardProps) {
-  const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
-  const [activeEvent, setActiveEvent] = useAtom(activeEventAtom);
+  const [selectedDates] = useAtom(selectedDatesAtom);
+  const [activeEvent] = useAtom(activeEventAtom);
 
   /* ---------------------------------------------------- set form data */
   const [eventName, setEventName] = useState("");
@@ -50,19 +50,18 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
   useEffect(() => {
     // NEW EVENT
     if (activeEvent === null) {
-      //alert(`${JSON.stringify(selectedDates)}`);
-      //if (selectedDates === null || !selectedDates) return;
       setEventName("");
       setStartDate(dayjs(selectedDates.start).add(6, "hour"));
       setEndDate(dayjs(selectedDates.end).add(10, "hour"));
+      setActiveColor(INIT_MODAL_DATA.color);
+      setActiveFont(INIT_MODAL_DATA.font);
     }
     // SAVED EVENT
     else {
-      //alert(`${getColorNameFromHex(activeColor)}`);
       setEventName(activeEvent.title + "");
       setStartDate(dayjs(activeEvent.start + ""));
       setEndDate(dayjs(activeEvent.end + ""));
-      setActiveColor("green");
+      setActiveColor(getColorNameFromHex(activeEvent.color + ""));
       setActiveFont(activeEvent.font + "");
     }
   }, [activeEvent, selectedDates]);

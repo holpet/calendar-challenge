@@ -54,7 +54,7 @@ export default function DatePicker({
             name="startDate"
             value={dayjs(startDate)}
             onChange={(newValue) => {
-              setStartDate(newValue);
+              setStartDate(dayjs(newValue));
               if (hasError(dayjs(newValue), endDate!)) setErrorDate(true);
               else setErrorDate(false);
             }}
@@ -76,7 +76,7 @@ export default function DatePicker({
             name="endDate"
             value={dayjs(endDate)}
             onChange={(newValue) => {
-              setEndDate(newValue);
+              setEndDate(dayjs(newValue));
               if (hasError(startDate!, dayjs(newValue))) setErrorDate(true);
               else setErrorDate(false);
             }}

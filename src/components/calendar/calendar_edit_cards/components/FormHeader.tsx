@@ -76,5 +76,4 @@ const FormHeader = ({ activeColor, setOpen }: IFormHeaderProps) => {
     </div>
   );
 };
-
 export default FormHeader;

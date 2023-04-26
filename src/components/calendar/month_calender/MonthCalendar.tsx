@@ -11,7 +11,6 @@ import {
   selectedDatesAtom,
 } from "../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
-import { getFormattedDateData } from "../../../lib/db/dbUtils";
 
 /**
  * This component serves for two calendars - one is the MAIN (full screen) one and the other the small SIDE calendar on the panel.
@@ -48,7 +47,7 @@ const MonthCalendar = ({
     if (selectedDates.start?.isSame(date))
       setSelectedDates({ start: null, end: null });
     else setSelectedDates({ start: date, end: date });
-    calendarAPI?.gotoDate(getFormattedDateData(date)!.date);
+    calendarAPI?.gotoDate(date.format());
     setCurrentOtherMonthData(date);
     setCurrentMonthData(date);
   }

@@ -49,8 +49,8 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
     // NEW EVENT
     if (activeEvent === null) {
       setEventName("");
-      setStartDate(dayjs(selectedDates.start).startOf("day"));
-      setEndDate(dayjs(selectedDates.end).startOf("day"));
+      setStartDate(selectedDates.start);
+      setEndDate(selectedDates.end);
       setActiveColor(INIT_MODAL_DATA.color);
       setActiveFont(INIT_MODAL_DATA.font);
     }

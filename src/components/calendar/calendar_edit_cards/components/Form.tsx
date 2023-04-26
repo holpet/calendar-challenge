@@ -2,11 +2,13 @@ import { Dispatch, useState } from "react";
 import DatePicker from "./DatePicker";
 import { SetStateAction, useAtom } from "jotai";
 import { activeEventAtom, eventsAtom } from "../../../../lib/atoms/globalAtoms";
-import dayjs, { Dayjs } from "dayjs";
-import { v4 as uuidv4 } from "uuid";
+import { Dayjs } from "dayjs";
 import ColorAndFontPicker from "./ColorAndFontPicker";
 import NamePicker from "./NamePicker";
-import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
+import {
+  addEditedEventToDB,
+  addNewEventToDB,
+} from "../../../../lib/db/dbUtils";
 
 interface IForm {
   setOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -59,31 +61,28 @@ const Form = ({
     /* save event into the "db" +++++++++++++++++++++ */
     // NEW EVENT
     if (activeEvent === null) {
-      const newEvent = {
-        id: uuidv4() + "",
-        title: eventName,
-        start: dayjs(startDate).format(),
-        end: dayjs(endDate).format(),
-        color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
-        font: activeFont,
-      };
-      setEvents([...events, newEvent]);
+      addNewEventToDB(
+        eventName,
+        startDate,
+        endDate,
+        activeColor,
+        activeFont,
+        events,
+        setEvents
+      );
     }
     // EDITED EVENT
     else {
-      const eventsAfterEdit = events.map((event) =>
-        event.id === activeEvent.id
-          ? {
-              ...event,
-              title: eventName,
-              start: dayjs(startDate).format(),
-              end: dayjs(endDate).format(),
-              color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
-              font: activeFont,
-            }
-          : event
+      addEditedEventToDB(
+        eventName,
+        startDate,
+        endDate,
+        activeColor,
+        activeFont,
+        activeEvent,
+        events,
+        setEvents
       );
-      setEvents(eventsAfterEdit);
     }
     setOpen(false);
   }

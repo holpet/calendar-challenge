@@ -1,43 +1,50 @@
+import { EventInput } from "@fullcalendar/core/index.js";
 import dayjs, { Dayjs } from "dayjs";
+import { v4 as uuidv4 } from "uuid";
+import { TO_HEX_COLORS } from "../themeHardcoded";
+import { Dispatch, SetStateAction } from "react";
 
-/* FORMATTER  */
-/* ------------------------------------------------------------------------------ */
-
-const format = "YYYY-MM-DD";
-
-/**
- * Function that creates a dayjs date from a formatted date string (see above), if not specified starting with hour & min 08:00.
- * @param date
- * @param hours
- * @returns a new "dayjs" object
- */
-export function getDateFromFormatted(
-  date: Dayjs | null,
-  hours: number[] = [8, 0]
-): Dayjs | null {
-  if (date === null) return null;
-  const formatted = new Date(
-    date.year(),
-    date.month(),
-    date.date(),
-    hours[0],
-    hours[1]
-  );
-  return dayjs(formatted);
+export function addNewEventToDB(
+  eventName: string,
+  startDate: Dayjs,
+  endDate: Dayjs,
+  activeColor: string,
+  activeFont: string,
+  events: EventInput[],
+  setEvents: Dispatch<SetStateAction<EventInput[]>>
+) {
+  const newEvent = {
+    id: uuidv4() + "",
+    title: eventName,
+    start: dayjs(startDate).format(),
+    end: dayjs(endDate).format(),
+    color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
+    font: activeFont,
+  };
+  setEvents([...events, newEvent]);
 }
 
-/**
- * Function that will turn the "dayjs" object into a string in specified format + separate hours & minute in an array.
- * @param date
- * @returns object with #1: "string" in a format "YYYY-MM-DD", #2 an "array" with 2 numbers (hours & minutes)
- */
-export function getFormattedDateData(
-  date: Dayjs | null
-): { date: string; hours: number[] } | null {
-  if (date === null) return null;
-  const formattedData = {
-    date: dayjs(date).format(format),
-    hours: [date.hour(), date.minute()],
-  };
-  return formattedData;
+export function addEditedEventToDB(
+  eventName: string,
+  startDate: Dayjs,
+  endDate: Dayjs,
+  activeColor: string,
+  activeFont: string,
+  activeEvent: EventInput,
+  events: EventInput[],
+  setEvents: Dispatch<SetStateAction<EventInput[]>>
+) {
+  const eventsAfterEdit = events.map((event) =>
+    event.id === activeEvent.id
+      ? {
+          ...event,
+          title: eventName,
+          start: dayjs(startDate).format(),
+          end: dayjs(endDate).format(),
+          color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
+          font: activeFont,
+        }
+      : event
+  );
+  setEvents(eventsAfterEdit);
 }

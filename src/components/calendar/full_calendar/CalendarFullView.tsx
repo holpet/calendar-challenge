@@ -68,8 +68,8 @@ export const CalendarFullView = () => {
     //
     addEditedEventToDB(
       event.title + "",
-      dayjs(eventDropInfo.event.start + "").utc(),
-      dayjs(eventDropInfo.event.end + "").utc(),
+      dayjs(eventDropInfo.event.start + ""),
+      dayjs(eventDropInfo.event.end + ""),
       event.color + "",
       event.font,
       eventDropInfo.event,
@@ -89,7 +89,6 @@ export const CalendarFullView = () => {
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         locale={"en-gb"}
-        timeZone="Europe/Prague"
         firstDay={1}
         headerToolbar={{
           left: "prev,next today",
@@ -97,6 +96,7 @@ export const CalendarFullView = () => {
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
         initialView="dayGridMonth"
+        timeZoneParam="local"
         editable={true}
         selectable={true}
         selectMirror={true}

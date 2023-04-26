@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
-import { COLORS, FONTS } from "../../../lib/themeHardcoded";
+import { COLORS } from "../../../lib/themeHardcoded";
 import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import FormHeader from "./components/FormHeader";
@@ -41,7 +41,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
   const [activeColor, setActiveColor] = useState<string>(INIT_MODAL_DATA.color);
   const [activeFont, setActiveFont] = useState<string>(INIT_MODAL_DATA.font);
 
-  /* ---------------------------------------------------- form data states */
+  /* ------------------------------------------------- end form data states */
 
   useEffect(() => {
     // NEW EVENT

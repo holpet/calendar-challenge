@@ -51,7 +51,7 @@ export default function DatePicker({
           <DateTimeField
             label="START"
             name="startDate"
-            value={dayjs.utc(startDate)}
+            value={dayjs(startDate)}
             onChange={(newValue) => {
               setStartDate(newValue);
               if (hasError(dayjs(newValue), endDate!)) setErrorDate(true);
@@ -73,7 +73,7 @@ export default function DatePicker({
           <DateTimeField
             label="END"
             name="endDate"
-            value={dayjs.utc(endDate)}
+            value={dayjs(endDate)}
             onChange={(newValue) => {
               setEndDate(newValue);
               if (hasError(startDate!, dayjs(newValue))) setErrorDate(true);

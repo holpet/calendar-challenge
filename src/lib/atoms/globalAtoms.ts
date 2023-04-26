@@ -3,8 +3,15 @@ import dayjs, { Dayjs } from "dayjs";
 import locale from "dayjs/locale/en-gb";
 import { CalendarApi, EventInput } from "@fullcalendar/core/index.js";
 import { EVENTS } from "../db/eventsData";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+/* dayjs config */
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 /* -------- set up calendar locale --------- */
+dayjs.tz.setDefault("Europe/Prague");
 export const now = dayjs().locale({
   ...locale,
 });

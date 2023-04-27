@@ -16,7 +16,7 @@ const ColorAndFontPicker = ({
     <div className="flex mr-2">
       {/* ------ colors ------ */}
       {Object.values(LEGEND_COLORS)
-        .slice(0, 4)
+        .slice(0, Object.keys(LEGEND_COLORS).length - 1)
         .map((color, i) => (
           <div key={i} className="flex items-center text-xs text-gray py-1">
             <div

@@ -11,14 +11,16 @@ const SidePanel = () => {
   const [currentYear, setCurrentYear] = useState<string | null>(null);
 
   useEffect(() => {
-    const year = !calendarAPI ? null : calendarAPI.getDate().getFullYear() + "";
+    const year = !calendarAPI
+      ? new Date().getFullYear() + ""
+      : calendarAPI.getDate().getFullYear() + "";
     setCurrentYear(year);
     setViewSwitched(false);
   }, [viewSwitched, calendarAPI]);
 
   return (
     <div className="p-4 min-w-side-panel max-w-xs h-full flex flex-col">
-      <div className="h-[44px] mb-3 bg-purple flex items-center justify-center text-white text-2xl">
+      <div className="h-[44px] mb-5 bg-purple flex items-center justify-center text-white text-2xl">
         {currentYear !== null && currentYear}
       </div>
       <Create />

@@ -5,16 +5,9 @@ export const INIT_MODAL_DATA = {
 };
 
 export const LEGEND_COLORS = {
-  orange: {
-    name: "orange",
-    meaning: "High Priority",
-    colorClass: "bg-orange",
-    colorBgClass: "bg-orange-300",
-    colorTextClass: "text-orange",
-  },
   green: {
     name: "green",
-    meaning: "Mid Priority",
+    meaning: "High Priority",
     colorClass: "bg-green",
     colorBgClass: "bg-green-300",
     colorTextClass: "text-green",
@@ -35,7 +28,7 @@ export const LEGEND_COLORS = {
   },
   white: {
     name: "white",
-    meaning: "?",
+    meaning: "[?]",
     colorClass: "bg-white border border-light-gray",
     colorBgClass: "bg-white",
     colorTextClass: "text-white",

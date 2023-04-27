@@ -17,7 +17,7 @@ const Create = () => {
           setActiveEvent(null);
           setOpen(true);
         }}
-        className="flex justify-between items-center mb-8 p-1 border-b-[5px] border-lightest-gray hover:cursor-pointer"
+        className="flex justify-between items-center mb-3 p-1 border-b-[5px] border-lightest-gray hover:cursor-pointer"
       >
         <h3 className="ml-1 font-light text-base">Create...</h3>
         <div className="hover:scale-105 transition-all">

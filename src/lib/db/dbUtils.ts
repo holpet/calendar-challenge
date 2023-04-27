@@ -22,7 +22,7 @@ export function addNewEventToDB(
     end: dayjs(endDate).format(),
     color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
     font: activeFont,
-    classNames: style,
+    classNames: [...style, `bg-${activeColor}-300 hover:bg-${activeColor}-500`],
   };
   setEvents([...events, newEvent]);
 }
@@ -46,7 +46,10 @@ export function addEditedEventToDB(
           end: dayjs(endDate).format(),
           color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
           font: activeFont,
-          classNames: style,
+          classNames: [
+            ...style,
+            `bg-${activeColor}-300 hover:bg-${activeColor}-500`,
+          ],
         }
       : event
   );

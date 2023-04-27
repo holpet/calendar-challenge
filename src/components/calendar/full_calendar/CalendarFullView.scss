@@ -3,6 +3,7 @@
   background-color: var(--purple);
   margin: 0 !important;
   color: var(--white) !important;
+  font-weight: 500;
   border-color: var(--white);
   border-width: 16px 16px 0 16px;
   padding: 5px 0 5px 0;
@@ -21,7 +22,7 @@
 // today tile
 .fc-day-today {
   background: rgba(255, 255, 255, 0.5) !important;
-  color: var(--white);
+  //color: var(--white);
   //border: 1px solid var(--purple) !important;
 }
 // ----- today number

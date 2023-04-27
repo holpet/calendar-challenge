@@ -7,7 +7,7 @@ import SidePanel from "./components/side_panel/SidePanel";
 
 function App() {
   return (
-    <div className="text-dark-gray flex flex-col h-screen bg-gradient-to-br from-purple via-pink to-mid-purple">
+    <div className="text-dark-gray flex flex-col h-screen bg-gradient-to-br from-purple via-pink to-blue">
       {/* <Header /> */}
       <div className="flex h-full z-0">
         <aside className="flex w-[1fr]">

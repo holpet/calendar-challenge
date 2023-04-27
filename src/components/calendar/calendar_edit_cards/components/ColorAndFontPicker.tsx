@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
 
 interface IColorAndFontPickerProps {

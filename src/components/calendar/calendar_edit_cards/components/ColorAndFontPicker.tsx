@@ -1,5 +1,6 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
+import { FONTS } from "../../../../lib/themeHardcoded";
 
 interface IColorAndFontPickerProps {
   activeColor: string;
@@ -30,13 +31,13 @@ const ColorAndFontPicker = ({
       {/* ------ font ------ */}
       <div className="text-gray font-bold text-lg flex items-baseline">
         <div
-          onClick={() => setActiveFont("font-global")}
+          onClick={() => setActiveFont(FONTS.global)}
           className="w-5 h-5 font-global flex justify-center hover:text-purple hover:cursor-pointer transition-all"
         >
           A
         </div>
         <div
-          onClick={() => setActiveFont("font-handwritten")}
+          onClick={() => setActiveFont(FONTS.handwritten)}
           className="w-5 h-5 font-handwritten flex justify-center self-baseline hover:text-purple hover:cursor-pointer transition-all"
         >
           A

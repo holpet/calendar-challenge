@@ -1,4 +1,4 @@
-/* These values serve for components that have to be customized with inline styles to override out their initial styling */
+/* These values serve for components that have to be customized with inline styles to override their initial styling */
 
 import { INIT_MODAL_DATA } from "./modal_utils/modalUtils";
 

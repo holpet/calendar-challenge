@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { TO_HEX_COLORS } from "../themeHardcoded";
 import { Dispatch, SetStateAction } from "react";
 
+const style = ["p-1"];
+
 export function addNewEventToDB(
   eventName: string,
   startDate: Dayjs,
@@ -20,7 +22,7 @@ export function addNewEventToDB(
     end: dayjs(endDate).format(),
     color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
     font: activeFont,
-    classNames: ["p-1"],
+    classNames: style,
   };
   setEvents([...events, newEvent]);
 }
@@ -44,7 +46,7 @@ export function addEditedEventToDB(
           end: dayjs(endDate).format(),
           color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
           font: activeFont,
-          classNames: ["p-1"],
+          classNames: style,
         }
       : event
   );

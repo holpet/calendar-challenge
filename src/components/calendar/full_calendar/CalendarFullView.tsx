@@ -14,6 +14,7 @@ import {
 import EditModal from "../calendar_edit_cards/EditModal";
 import dayjs from "dayjs";
 import { addEditedEventToDB } from "../../../lib/db/dbUtils";
+import { getColorNameFromHex } from "../../../lib/themeHardcoded";
 
 export const CalendarFullView = () => {
   const [events, setEvents] = useAtom(eventsAtom);
@@ -62,7 +63,7 @@ export const CalendarFullView = () => {
       event.title + "",
       dayjs(eventDropResizeInfo.event.start),
       dayjs(eventDropResizeInfo.event.end),
-      event.color + "",
+      getColorNameFromHex(event.color + ""),
       event.font,
       eventDropResizeInfo.event,
       events,

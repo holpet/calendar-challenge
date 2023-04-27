@@ -35,7 +35,7 @@ export default function DatePicker({
         TO_HEX_COLORS[(activeColor + "-100") as keyof typeof TO_HEX_COLORS],
     },
     "& .MuiInputBase-root.Mui-focused .MuiInputBase-input": {
-      color: "#8f98aa",
+      color: TO_HEX_COLORS.gray,
     },
   };
 

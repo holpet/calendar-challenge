@@ -6,6 +6,8 @@ import { TO_HEX_COLORS, FONTS } from "../themeHardcoded";
  * This is a MOCK database obj with initial data.
  * */
 
+const style = ["p-1"];
+
 export const EVENTS: EventInput[] = [
   {
     id: uuidv4(),
@@ -14,7 +16,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-03-30" + "T13:00:00",
     color: TO_HEX_COLORS.orange,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -23,7 +25,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T13:00:00",
     color: TO_HEX_COLORS.purple,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -32,7 +34,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T14:00:00",
     color: TO_HEX_COLORS.green,
     font: FONTS.handwritten,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -41,7 +43,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T15:00:00",
     color: TO_HEX_COLORS.pink,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -50,7 +52,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-14" + "T19:00:00",
     color: TO_HEX_COLORS.green,
     font: FONTS.handwritten,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -59,7 +61,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-06" + "T12:52:00",
     color: TO_HEX_COLORS.green,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -68,7 +70,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-05" + "T13:00:00",
     color: TO_HEX_COLORS.orange,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -77,7 +79,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-20" + "T05:10:00",
     color: TO_HEX_COLORS.pink,
     font: FONTS.handwritten,
-    classNames: ["p-1"],
+    classNames: style,
   },
   {
     id: uuidv4(),
@@ -86,6 +88,6 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-25" + "T16:15:25",
     color: TO_HEX_COLORS.purple,
     font: FONTS.global,
-    classNames: ["p-1"],
+    classNames: style,
   },
 ];

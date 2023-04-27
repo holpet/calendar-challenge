@@ -2,9 +2,7 @@ import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin, {
-  EventResizeDoneArg,
-} from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import {
@@ -60,6 +58,7 @@ export const CalendarFullView = () => {
     const [event] = events.filter((event) => {
       return event.id === eventDropResizeInfo.event.id;
     });
+    alert(`${eventDropResizeInfo.event.color} ${event.color}`);
     addEditedEventToDB(
       event.title + "",
       dayjs(eventDropResizeInfo.event.start),
@@ -102,6 +101,11 @@ export const CalendarFullView = () => {
           },
         }}
         events={events}
+        eventTimeFormat={{
+          hour: "2-digit",
+          minute: "2-digit",
+          meridiem: false,
+        }}
         select={handleDateSelect}
         //eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}

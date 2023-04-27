@@ -20,6 +20,7 @@ export function addNewEventToDB(
     end: dayjs(endDate).format(),
     color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
     font: activeFont,
+    classNames: ["p-1"],
   };
   setEvents([...events, newEvent]);
 }
@@ -43,6 +44,7 @@ export function addEditedEventToDB(
           end: dayjs(endDate).format(),
           color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
           font: activeFont,
+          classNames: ["p-1"],
         }
       : event
   );

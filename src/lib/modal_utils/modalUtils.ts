@@ -1,12 +1,8 @@
-import { EventInput } from "@fullcalendar/core/index.js";
-
 export const INIT_MODAL_DATA = {
   title: "",
   color: "purple",
   font: "text-global",
 };
-
-export function populateModal(event: EventInput) {}
 
 export const LEGEND_COLORS = {
   orange: {

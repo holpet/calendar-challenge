@@ -1,3 +1,4 @@
+import "./CalendarFullView.scss";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -10,6 +11,7 @@ import {
   calendarAPIAtom,
   eventsAtom,
   selectedDatesAtom,
+  viewSwitchedAtom,
 } from "../../../lib/atoms/globalAtoms";
 import EditModal from "../calendar_edit_cards/EditModal";
 import dayjs from "dayjs";
@@ -23,6 +25,7 @@ export const CalendarFullView = () => {
   const [open, setOpen] = useState(false); // open or close edit modal
   const [, setSelectedDate] = useAtom(selectedDatesAtom);
   const [, setActiveEvent] = useAtom(activeEventAtom);
+  const [, setViewSwitched] = useAtom(viewSwitchedAtom);
 
   useEffect(() => {
     setCalendarAPI(calendarRef.current!.getApi());
@@ -84,6 +87,27 @@ export const CalendarFullView = () => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
+        customButtons={{
+          prev: {
+            click: function () {
+              calendarRef.current?.getApi().prev();
+              setViewSwitched(true);
+            },
+          },
+          next: {
+            click: function () {
+              calendarRef.current?.getApi().next();
+              setViewSwitched(true);
+            },
+          },
+          today: {
+            text: "today",
+            click: function () {
+              calendarRef.current?.getApi().today();
+              setViewSwitched(true);
+            },
+          },
+        }}
         initialView="dayGridMonth"
         timeZoneParam="local"
         editable={true}
@@ -91,13 +115,15 @@ export const CalendarFullView = () => {
         selectMirror={true}
         unselectAuto={true}
         dayMaxEvents={true}
+        allDaySlot={false}
+        expandRows={true}
         weekends={true}
         views={{
           dayGridMonth: {
-            titleFormat: { year: "numeric", month: "long" },
+            titleFormat: { month: "long" },
           },
-          dayGridWeek: {
-            titleFormat: { year: "numeric", month: "long", day: "2-digit" },
+          timeGridWeek: {
+            titleFormat: { month: "long" },
           },
         }}
         events={events}
@@ -107,15 +133,9 @@ export const CalendarFullView = () => {
           meridiem: false,
         }}
         select={handleDateSelect}
-        //eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}
         eventDrop={handleDropAndResize}
         eventResize={handleDropAndResize}
-        /* you can update a remote database when these fire:
-    eventAdd={function(){}}
-    eventChange={function(){}}
-    eventRemove={function(){}}
-    */
       />
     </div>
   );

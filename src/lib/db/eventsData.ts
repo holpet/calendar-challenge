@@ -16,7 +16,10 @@ export const EVENTS: EventInput[] = [
     end: "2023-03-30" + "T13:00:00",
     color: TO_HEX_COLORS.orange,
     font: FONTS.global,
-    classNames: style,
+    classNames: [
+      ...style,
+      "border border-orange bg-orange-300 hover:bg-orange-500",
+    ],
   },
   {
     id: uuidv4(),
@@ -25,7 +28,10 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T13:00:00",
     color: TO_HEX_COLORS.purple,
     font: FONTS.global,
-    classNames: style,
+    classNames: [
+      ...style,
+      "border border-purple bg-purple-300 hover:bg-purple-500",
+    ],
   },
   {
     id: uuidv4(),
@@ -34,7 +40,10 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T14:00:00",
     color: TO_HEX_COLORS.green,
     font: FONTS.handwritten,
-    classNames: style,
+    classNames: [
+      ...style,
+      "border border-green bg-green-300 hover:bg-green-500",
+    ],
   },
   {
     id: uuidv4(),
@@ -43,7 +52,7 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-11" + "T15:00:00",
     color: TO_HEX_COLORS.pink,
     font: FONTS.global,
-    classNames: style,
+    classNames: [...style, "border border-pink bg-pink-300 hover:bg-pink-500"],
   },
   {
     id: uuidv4(),
@@ -52,7 +61,10 @@ export const EVENTS: EventInput[] = [
     end: "2023-04-14" + "T19:00:00",
     color: TO_HEX_COLORS.green,
     font: FONTS.handwritten,
-    classNames: style,
+    classNames: [
+      ...style,
+      "border border-green bg-green-300 hover:bg-green-500",
+    ],
   },
   {
     id: uuidv4(),

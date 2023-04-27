@@ -37,15 +37,19 @@ export default {
 
       // complementary shades
       orange: "#ff7f00",
+      "orange-500": "#ffd7b0",
       "orange-300": "#ffe5cb",
       "orange-100": "#fff5ec",
       //purple: "#7e45db",
+      "purple-500": "#c4bcef",
       "purple-300": "#e8e5f9",
       "purple-100": "#f3f1fc",
       green: "#57b914",
+      "green-500": "#c2f59f",
       "green-300": "#d6f8be",
       "green-100": "#eefce4",
       pink: "#de148b",
+      "pink-500": "#fab6dd",
       "pink-300": "#fcd6ec",
       "pink-100": "#fef0f8",
     },
@@ -70,6 +74,15 @@ export default {
       },
       boxShadow: {
         highlight: "inset 0px -6px 0px 0px rgb(0 0 0 / 0.1)",
+      },
+      animation: {
+        "fly-in": "flyin",
+      },
+      keyframes: {
+        flyin: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
     },
   },

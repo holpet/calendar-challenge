@@ -12,26 +12,14 @@ import {
 } from "../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
 
-/**
- * This component serves for two calendars - one is the MAIN (full screen) one and the other the small SIDE calendar on the panel.
- * @prop fullScreen: determines which classes belong to which calendar
- * @prop currentMonthData: global state for the PRIMARY calendar (if it's passed from MAIN -> MAIN (full screen) calendar state, otherwise SIDE calendar state)
- * @prop currentOtherMonthData: global state for the OTHER calendar (if it's passed from MAIN -> SIDE (side panel) calendar state, otherwise MAIN calendar state)
- */
-
 interface ICalenderProps {
-  fullScreen?: boolean;
   currentMonthData: Dayjs;
   setCurrentMonthData: React.Dispatch<React.SetStateAction<Dayjs>>;
-  currentOtherMonthData: Dayjs;
-  setCurrentOtherMonthData: React.Dispatch<React.SetStateAction<Dayjs>>;
 }
 
 const MonthCalendar = ({
-  fullScreen = true,
   currentMonthData,
   setCurrentMonthData,
-  setCurrentOtherMonthData,
 }: ICalenderProps) => {
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);
   const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
@@ -42,13 +30,14 @@ const MonthCalendar = ({
     setAllDays(allDays);
   }, [currentMonthData]);
 
+  /* GO TO FULL CALENDAR DATE */
   function handleSelection(d: IFormattedObj) {
     const date = dayjs(d.origFormat);
-    if (selectedDates.start?.isSame(date))
-      setSelectedDates({ start: null, end: null });
-    else setSelectedDates({ start: date, end: date });
+    setSelectedDates({
+      start: dayjs(date).startOf("day"),
+      end: dayjs(date).add(1, "day").startOf("day"),
+    });
     calendarAPI?.gotoDate(date.format());
-    setCurrentOtherMonthData(date);
     setCurrentMonthData(date);
   }
 
@@ -58,19 +47,8 @@ const MonthCalendar = ({
     const days = [];
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div
-          key={i}
-          className={` ${
-            fullScreen
-              ? "text-lg px-2 py-1 h-10 flex items-center justify-center uppercase first:rounded-t-lg border-l border-light-gray"
-              : "text-sm text-center"
-          }`}
-        >
-          <span>
-            {fullScreen
-              ? now.weekday(i).format(dateFormat).slice(0, 3)
-              : now.weekday(i).format(dateFormat).charAt(0)}
-          </span>
+        <div key={i} className="text-sm text-center">
+          <span>{now.weekday(i).format(dateFormat).charAt(0)}</span>
         </div>
       );
     }
@@ -89,15 +67,7 @@ const MonthCalendar = ({
             key={i}
             /* handle color selections */
             onClick={() => handleSelection(d)}
-            className={`hover:cursor-pointer ${
-              fullScreen
-                ? "px-2 py-1 border-t border-l border-light-gray"
-                : "my-1"
-            } ${fullScreen && d.isCurrentDay && "today-hl"} ${
-              fullScreen &&
-              selectedDates.start?.isSame(d.origFormat) &&
-              "selected-hl"
-            }`}
+            className="hover:cursor-pointer my-1"
           >
             <span
               className={`${
@@ -119,21 +89,11 @@ const MonthCalendar = ({
   return (
     <>
       <div
-        className={`text-lg grid grid-cols-7 ${
-          fullScreen
-            ? "items-center bg-gradient-to-r from-light-purple to-lightest-purple rounded-t-lg border-r border-light-gray"
-            : "my-1 bg-gradient-to-r from-light-purple to-lightest-purple rounded-md"
-        }`}
+        className={`text-xs font-semibold grid grid-cols-7 my-1 bg-light-gray rounded-sm`}
       >
         {renderNameOfDays()}
       </div>
-      <div
-        className={`text-lg grid grid-cols-7 ${
-          fullScreen
-            ? "min-h-[calc(100%-2.5rem)] border-r border-b bg-white border-light-gray text-right"
-            : "text-center text-xs"
-        }`}
-      >
+      <div className={`grid grid-cols-7 text-center text-xs`}>
         {renderAllDays()}
       </div>
     </>

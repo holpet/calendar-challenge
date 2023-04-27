@@ -22,8 +22,8 @@ export const TO_HEX_COLORS = {
 
 // saved as tailwind classes
 export const FONTS = {
-  global: "text-global",
-  handwritten: "text-handwritten",
+  global: "font-global",
+  handwritten: "font-handwritten",
 };
 
 export function getColorNameFromHex(hex: string) {

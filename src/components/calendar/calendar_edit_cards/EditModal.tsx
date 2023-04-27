@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
+import { Grow } from "@mui/material";
 import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
 import {
@@ -85,9 +86,9 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
         TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS]
       }`,
       borderRadius: "20px",
-      backgroundColor: `${
+      background: `linear-gradient(to right bottom, ${
         TO_HEX_COLORS[(activeColor + "-300") as keyof typeof TO_HEX_COLORS]
-      }`,
+      },${"white"})`,
     },
   };
 
@@ -111,10 +112,14 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        TransitionComponent={Grow}
         PaperProps={paperProps}
         slotProps={slotProps}
+        className={`transition-all duration-1000 ${
+          open ? "rotate-0" : "rotate-12"
+        }`}
       >
-        <div className="p-6 overflow-visible relative">
+        <div className="p-6 overflow-hidden relative">
           {/* ------ LABEL of EVENT DATA ------ */}
           <FormHeader activeColor={activeColor} setOpen={setOpen} />
           {/* separator line */}

@@ -7,10 +7,10 @@ import SidePanel from "./components/side_panel/SidePanel";
 
 function App() {
   return (
-    <div className="text-dark-gray flex flex-col h-screen bg-white-gray">
+    <div className="text-dark-gray flex flex-col h-screen bg-gradient-to-br from-purple via-pink to-mid-purple">
       {/* <Header /> */}
       <div className="flex h-full z-0">
-        <aside className="flex w-[1fr] bg-pink-500">
+        <aside className="flex w-[1fr]">
           <div className="w-full flex mx-auto pl-6 pr-0 py-6">
             <div className="w-full flex items-start justify-center text-gray-900 text-xl bg-white border border-light-gray">
               <SidePanel />

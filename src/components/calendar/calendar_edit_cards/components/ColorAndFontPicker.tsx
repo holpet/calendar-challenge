@@ -9,7 +9,6 @@ interface IColorAndFontPickerProps {
 }
 
 const ColorAndFontPicker = ({
-  activeColor,
   setActiveColor,
   setActiveFont,
 }: IColorAndFontPickerProps) => {
@@ -22,9 +21,7 @@ const ColorAndFontPicker = ({
           <div key={i} className="flex items-center text-xs text-gray py-1">
             <div
               onClick={() => setActiveColor(color.name)}
-              className={`${color.colorClass} ${
-                color.name === activeColor && "color-active"
-              } rounded-full w-5 h-5 mr-2 hover:scale-110 hover:cursor-pointer transition-all`}
+              className={`${color.colorClass} rounded-full w-5 h-5 mr-2 hover:scale-110 hover:cursor-pointer transition-all`}
             ></div>
           </div>
         ))}

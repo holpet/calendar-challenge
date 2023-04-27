@@ -31,9 +31,7 @@ const NamePicker = ({
         className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} ${
           LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS]
             .colorTextClass
-        } resize-none text-2xl ${
-          LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS].colorBgClass
-        }`}
+        } resize-none text-2xl bg-transparent`}
         autoFocus={true}
         value={eventName}
         autoComplete="off"

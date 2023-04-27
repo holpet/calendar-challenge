@@ -58,7 +58,6 @@ export const CalendarFullView = () => {
     const [event] = events.filter((event) => {
       return event.id === eventDropResizeInfo.event.id;
     });
-    alert(`${eventDropResizeInfo.event.color} ${event.color}`);
     addEditedEventToDB(
       event.title + "",
       dayjs(eventDropResizeInfo.event.start),

@@ -17,7 +17,7 @@ function App() {
             </div>
           </div>
         </aside>
-        <main className="flex flex-col w-full overflow-y-auto">
+        <main className="flex flex-col w-full min-h-full overflow-y-auto">
           <div className="flex w-full min-h-full mx-auto p-6">
             <div className="w-full min-h-full items-center justify-center text-gray-900 text-sm">
               <CalendarFullView />

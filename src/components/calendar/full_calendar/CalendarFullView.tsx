@@ -75,7 +75,7 @@ export const CalendarFullView = () => {
   };
 
   return (
-    <div className="pb-6">
+    <div className="pb-6 min-h-full">
       <EditModal open={open} setOpen={setOpen} />
       <FullCalendar
         ref={calendarRef}
@@ -118,12 +118,15 @@ export const CalendarFullView = () => {
         allDaySlot={false}
         expandRows={true}
         weekends={true}
+        height="calc(100vh - 48px)" // screen - padding
         views={{
           dayGridMonth: {
             titleFormat: { month: "long" },
           },
           timeGridWeek: {
             titleFormat: { month: "long" },
+            dayHeaderFormat: { weekday: "short", day: "numeric" },
+            selectMirror: false,
           },
           timeGridDay: {
             titleFormat: { month: "long", day: "2-digit" },

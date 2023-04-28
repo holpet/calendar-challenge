@@ -19,10 +19,14 @@ export const now = dayjs().locale({
 export const currentSideMonthAtom = atom<Dayjs>(now);
 
 /* event date that is selected by either the small or the full calendar -> date for active event */
+export const INIT_SELECTED_DATES = {
+  start: now.startOf("day"),
+  end: now.add(1, "day").startOf("day"),
+};
 export const selectedDatesAtom = atom<{
   start: Dayjs | null;
   end: Dayjs | null;
-}>({ start: now.startOf("day"), end: now.add(1, "day").startOf("day") });
+}>(INIT_SELECTED_DATES);
 
 /* calendar ref that calls @fullcalendar API */
 export const calendarAPIAtom = atom<CalendarApi | null>(null);

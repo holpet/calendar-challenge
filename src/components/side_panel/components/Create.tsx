@@ -3,11 +3,16 @@ import EditModal from "../../calendar/calendar_edit_cards/EditModal";
 import { useState } from "react";
 import { TO_HEX_COLORS } from "../../../lib/constants/themeHardcoded";
 import { useAtom } from "jotai";
-import { activeEventAtom } from "../../../lib/atoms/globalAtoms";
+import {
+  INIT_SELECTED_DATES,
+  activeEventAtom,
+  selectedDatesAtom,
+} from "../../../lib/atoms/globalAtoms";
 
 const Create = () => {
   const [open, setOpen] = useState(false);
   const [, setActiveEvent] = useAtom(activeEventAtom);
+  const [, setSelectedDates] = useAtom(selectedDatesAtom);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
@@ -15,6 +20,7 @@ const Create = () => {
       <EditModal open={open} setOpen={setOpen} />
       <div
         onClick={() => {
+          setSelectedDates(INIT_SELECTED_DATES);
           setActiveEvent(null);
           setOpen(true);
         }}

@@ -1,6 +1,6 @@
 // title
 .fc-header-toolbar {
-  background-color: var(--purple);
+  background: linear-gradient(to right, var(--purple), var(--blue));
   margin: 0 !important;
   color: var(--white) !important;
   font-weight: 500;
@@ -33,12 +33,17 @@
   margin: 2px;
   padding: 0 4px;
 }
-
 .fc-day:not(.fc-day-today),
 .fc-day:not(.fc-col-header-cell) {
   background-color: rgba(255, 255, 255, 1);
   //color: var(--white);
   //border-color: var(--purple);
+}
+
+// saturday & sunday
+.fc-day-sat,
+.fc-day-sun {
+  background-color: var(--whiteGray) !important;
 }
 
 // grid events
@@ -75,4 +80,11 @@
 .fc-highlight {
   background-color: rgba(232, 229, 249, 0.3) !important;
   color: var(--gray) !important;
+}
+// prev/next buttons
+.fc-prev-button,
+.fc-next-button {
+  background-color: transparent !important;
+  border: none;
+  outline: none;
 }

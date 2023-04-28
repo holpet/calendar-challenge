@@ -125,6 +125,9 @@ export const CalendarFullView = () => {
           timeGridWeek: {
             titleFormat: { month: "long" },
           },
+          timeGridDay: {
+            titleFormat: { month: "long", day: "2-digit" },
+          },
         }}
         events={events}
         eventTimeFormat={{

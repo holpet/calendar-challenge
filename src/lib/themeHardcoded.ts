@@ -4,10 +4,6 @@ import { INIT_MODAL_DATA } from "./modal_utils/modalUtils";
 
 // same can be found in tailwind.config.js
 export const TO_HEX_COLORS = {
-  orange: "#ff7f00",
-  "orange-500": "#ffd7b0",
-  "orange-300": "#ffe5cb",
-  "orange-100": "#fff5ec",
   purple: "#7e45db",
   "purple-500": "#d6d0f4",
   "purple-300": "#e8e5f9",
@@ -23,6 +19,7 @@ export const TO_HEX_COLORS = {
   gray: "#8f98aa",
   lightGray: "#d9dce2",
   blue: "#4f40bf",
+  white: "#ffffff",
 };
 
 // saved as tailwind classes

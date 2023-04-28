@@ -22,7 +22,7 @@ export const currentSideMonthAtom = atom<Dayjs>(now);
 export const selectedDatesAtom = atom<{
   start: Dayjs | null;
   end: Dayjs | null;
-}>({ start: null, end: null });
+}>({ start: now.startOf("day"), end: now.add(1, "day").startOf("day") });
 
 /* calendar ref that calls @fullcalendar API */
 export const calendarAPIAtom = atom<CalendarApi | null>(null);

@@ -4,6 +4,7 @@ import SideMonthCalendar from "../calendar/month_calender/variants/SideMonthCale
 import Create from "./components/Create";
 import Legend from "./components/Legend";
 import { useEffect, useState } from "react";
+import { tentacles } from "../../assets/img";
 
 const SidePanel = () => {
   const [calendarAPI] = useAtom(calendarAPIAtom);
@@ -26,7 +27,11 @@ const SidePanel = () => {
       <Create />
       <SideMonthCalendar />
       <Legend />
-      <div className="h-full flex-1 border-light-gray border mt-5"></div>
+      <div className="h-full flex-1 bg-white-gray border-light-gray border mt-5 relative">
+        <div className="absolute left-0 bottom-0 overflow-visible w-[500px] z-20 pointer-events-none">
+          <img src={tentacles} className="w-full h-auto" />
+        </div>
+      </div>
     </div>
   );
 };

@@ -85,7 +85,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
       border: `10px solid ${
         TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS]
       }`,
-      borderRadius: "20px",
+      borderRadius: "5px",
       background: `linear-gradient(to right bottom, ${
         TO_HEX_COLORS[(activeColor + "-300") as keyof typeof TO_HEX_COLORS]
       },${"white"})`,

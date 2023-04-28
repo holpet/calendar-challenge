@@ -1,7 +1,7 @@
-import CalendarHeader from "../components/MonthCalendarHeader";
-import Calendar from "../MonthCalendar";
+import CalendarHeader from "./components/MonthCalendarHeader";
+import Calendar from "./components/MonthCalendar";
 import { useAtom } from "jotai";
-import { currentSideMonthAtom } from "../../../../lib/atoms/globalAtoms";
+import { currentSideMonthAtom } from "../../../lib/atoms/globalAtoms";
 
 const SideMonthCalendar = () => {
   const [currentSideMonthData, setCurrentSideMonthData] = useAtom(

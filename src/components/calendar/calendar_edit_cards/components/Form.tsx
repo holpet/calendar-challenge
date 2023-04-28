@@ -1,10 +1,10 @@
 import { Dispatch, useState } from "react";
-import DatePicker from "./DatePicker";
+import DatePicker from "./components/DatePicker";
 import { SetStateAction, useAtom } from "jotai";
 import { activeEventAtom, eventsAtom } from "../../../../lib/atoms/globalAtoms";
 import { Dayjs } from "dayjs";
-import ColorAndFontPicker from "./ColorAndFontPicker";
-import NamePicker from "./NamePicker";
+import ColorAndFontPicker from "./components/ColorAndFontPicker";
+import NamePicker from "./components/NamePicker";
 import {
   addEditedEventToDB,
   addNewEventToDB,
@@ -120,7 +120,10 @@ const Form = ({
         />
 
         {/* ------ save event ------ */}
-        <button type="submit" className="gen-link">
+        <button
+          type="submit"
+          className="bg-purple hover:bg-mid-purple text-white btn"
+        >
           SAVE
         </button>
       </div>

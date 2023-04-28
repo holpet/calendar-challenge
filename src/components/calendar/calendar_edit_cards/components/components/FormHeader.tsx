@@ -1,14 +1,14 @@
 import { default as CalendarIcon } from "@mui/icons-material/EventAvailable";
 import { default as DeleteIcon } from "@mui/icons-material/DeleteOutline";
 import { default as Restart } from "@mui/icons-material/RestartAlt";
-import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
-import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
+import { LEGEND_COLORS } from "../../../../../lib/constants/valuesHardcoded";
+import { TO_HEX_COLORS } from "../../../../../lib/constants/themeHardcoded";
 import { useAtom } from "jotai";
 import {
   activeEventAtom,
   eventsAtom,
   selectedDatesAtom,
-} from "../../../../lib/atoms/globalAtoms";
+} from "../../../../../lib/atoms/globalAtoms";
 import { Dispatch, SetStateAction } from "react";
 import dayjs from "dayjs";
 

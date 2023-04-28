@@ -1,10 +1,11 @@
 import { useAtom } from "jotai";
 import { calendarAPIAtom, viewSwitchedAtom } from "../../lib/atoms/globalAtoms";
-import SideMonthCalendar from "../calendar/month_calender/variants/SideMonthCalendar";
+import SideMonthCalendar from "../calendar/month_calender/SideMonthCalendar";
 import Create from "./components/Create";
 import Legend from "./components/Legend";
 import { useEffect, useState } from "react";
-import { tentacles } from "../../assets/img";
+import Tentacles from "../gfx_elems/Tentacles";
+import { METRICS } from "../../lib/constants/themeHardcoded";
 
 const SidePanel = () => {
   const [calendarAPI] = useAtom(calendarAPIAtom);
@@ -20,17 +21,17 @@ const SidePanel = () => {
   }, [viewSwitched, calendarAPI]);
 
   return (
-    <div className="p-4 min-w-side-panel max-w-xs h-full flex flex-col">
-      <div className="h-[40px] mb-5 bg-purple flex items-center justify-center text-white text-2xl">
+    <div className="p-4 w-side-panel h-full flex flex-col">
+      <div
+        className={`${METRICS.fillHeaderHeight} mb-5 bg-purple flex items-center justify-center text-white text-2xl`}
+      >
         {currentYear !== null && currentYear}
       </div>
       <Create />
       <SideMonthCalendar />
       <Legend />
       <div className="h-full flex-1 bg-white-gray border-light-gray border mt-5 relative">
-        <div className="absolute left-0 bottom-0 overflow-visible w-[500px] z-20 pointer-events-none">
-          <img src={tentacles} className="w-full h-auto" />
-        </div>
+        <Tentacles type={"side"} />
       </div>
     </div>
   );

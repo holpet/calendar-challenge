@@ -1,10 +1,8 @@
 import { EventInput } from "@fullcalendar/core/index.js";
 import dayjs, { Dayjs } from "dayjs";
 import { v4 as uuidv4 } from "uuid";
-import { TO_HEX_COLORS } from "../themeHardcoded";
+import { TO_HEX_COLORS } from "../constants/themeHardcoded";
 import { Dispatch, SetStateAction } from "react";
-
-const style = [""];
 
 export function addNewEventToDB(
   eventName: string,
@@ -22,7 +20,7 @@ export function addNewEventToDB(
     end: dayjs(endDate).format(),
     color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
     font: activeFont,
-    classNames: [...style, `bg-${activeColor}-300 hover:bg-${activeColor}-500`],
+    classNames: [`bg-${activeColor}-300 hover:bg-${activeColor}-500`],
   };
   setEvents([...events, newEvent]);
 }
@@ -46,10 +44,7 @@ export function addEditedEventToDB(
           end: dayjs(endDate).format(),
           color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
           font: activeFont,
-          classNames: [
-            ...style,
-            `bg-${activeColor}-300 hover:bg-${activeColor}-500`,
-          ],
+          classNames: [`bg-${activeColor}-300 hover:bg-${activeColor}-500`],
         }
       : event
   );

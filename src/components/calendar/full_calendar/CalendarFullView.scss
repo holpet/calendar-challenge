@@ -1,6 +1,6 @@
 /* Calendar style can be changed by targetting fixed component classes */
 
-// title
+// --------------------------------- CALENDAR HEADER
 .fc-header-toolbar {
   background: linear-gradient(to right, var(--purple), var(--blue));
   margin: 0 !important;
@@ -9,7 +9,10 @@
   border-color: var(--white);
   border-width: 16px 16px 0 16px;
   padding: 5px 0 5px 0;
+  display: flex !important;
+  justify-content: space-between !important;
 }
+/* 3 chunks: [next/prev, today] [title] [view swicher] */
 .fc-toolbar-chunk {
   display: flex;
   align-items: center;
@@ -17,22 +20,27 @@
 .fc-toolbar-chunk:nth-child(1) {
   margin-right: 16px;
 }
-.fc-toolbar-chunk:nth-child(2) {
-  font-size: large;
+.fc-toolbar-title {
+  font-size: 1.75rem !important;
 }
 
+// -------------------------------------- CALENDAR BODY
 // table body
 .fc-view-harness {
   border-color: var(--white);
   border-width: 0 16px 16px 16px;
   overflow: hidden;
 }
-
-// today tile
+// today tile -> special semi-transparent
 .fc-day-today {
   background: rgba(255, 255, 255, 0.5) !important;
 }
-// ----- today number
+// any other tile (apart from today) is white
+.fc-day:not(.fc-day-today),
+.fc-day:not(.fc-col-header-cell) {
+  background-color: rgba(255, 255, 255, 1);
+}
+// -----> today number is highlighted
 .fc-day-today .fc-daygrid-day-top .fc-daygrid-day-number {
   background-color: var(--purple) !important;
   border-radius: 5px;
@@ -40,15 +48,24 @@
   margin: 2px;
   padding: 0 4px;
 }
-.fc-day:not(.fc-day-today),
-.fc-day:not(.fc-col-header-cell) {
-  background-color: rgba(255, 255, 255, 1);
+// saturday & sunday
+.fc-day-sat:not(.fc-day-today),
+.fc-day-sun:not(.fc-day-today) {
+  background-color: var(--whiteGray) !important;
+}
+
+/* +++++++++++++++++++++++  */
+// selected
+.fc-highlight {
+  background-color: rgba(232, 229, 249, 0.3) !important;
+  color: var(--gray) !important;
 }
 
 //**********************************************************//
 /* FONT & PADDING OF EVENTS - dynamic */
 .fc-day:not(.fc-col-header-cell) {
-  font-size: clamp(10px, 0.7vw, 20px) !important;
+  font-size: clamp(10px, 0.7vw, 25px) !important;
+  line-height: clamp(0.2rem, 1vw, 2.5rem) !important;
 }
 .fc-day.fc-col-header-cell {
   font-size: clamp(12px, 0.85vw, 26px) !important;
@@ -58,14 +75,17 @@
 }
 .fc-event {
   padding: clamp(0px, 0.02vw, 6px) !important;
+  border: none !important;
+}
+.fc-day-today .fc-event,
+.fc-day-past .fc-event,
+.fc-day-future .fc-event,
+.fc .fc-daygrid-event,
+.fc-day .fc-event {
+  z-index: 11 !important;
+  position: relative;
 }
 //**********************************************************//
-
-// saturday & sunday
-.fc-day-sat,
-.fc-day-sun {
-  background-color: var(--whiteGray) !important;
-}
 
 // grid events
 .fc-daygrid-dot-event {
@@ -77,11 +97,6 @@
 }
 .fc-daygrid-block-event:hover {
   background-color: rgba(0, 0, 0, 0.05);
-}
-// selected
-.fc-highlight {
-  background-color: rgba(232, 229, 249, 0.3) !important;
-  color: var(--gray) !important;
 }
 
 // weekday names
@@ -119,6 +134,8 @@
 }
 
 // today
+.fc-button:focus.fc-today-button,
+.fc-button:active.fc-today-button,
 .fc-today-button {
   background-color: transparent !important;
   color: var(--white) !important;
@@ -127,6 +144,9 @@
 }
 .fc-today-button:hover:not([disabled]) {
   background-color: var(--green) !important;
+}
+.fc-today-button:hover[disabled] {
+  pointer-events: none !important;
 }
 
 // prev/next buttons
@@ -164,6 +184,8 @@
 .fc-button-active {
   background-color: var(--pink) !important;
 }
+
+//**********************************************************//
 
 // TRANSITION EFFECTS
 .toTransition {

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
-import { FONTS } from "../../../../lib/themeHardcoded";
+import { LEGEND_COLORS } from "../../../../../lib/constants/valuesHardcoded";
+import { FONTS } from "../../../../../lib/constants/themeHardcoded";
 
 interface IColorAndFontPickerProps {
   activeColor: string;

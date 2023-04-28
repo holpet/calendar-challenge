@@ -3,7 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimeField } from "@mui/x-date-pickers/DateTimeField";
 import dayjs, { Dayjs } from "dayjs";
 import { Dispatch, SetStateAction } from "react";
-import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
+import { TO_HEX_COLORS } from "../../../../../lib/constants/themeHardcoded";
 
 interface IDatePickerProps {
   activeColor: string;

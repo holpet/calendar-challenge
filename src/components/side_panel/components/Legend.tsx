@@ -1,12 +1,12 @@
 import { default as Info } from "@mui/icons-material/Info";
-import { LEGEND_COLORS } from "../../../lib/modal_utils/modalUtils";
-import { TO_HEX_COLORS } from "../../../lib/themeHardcoded";
+import { LEGEND_COLORS } from "../../../lib/constants/valuesHardcoded";
+import { TO_HEX_COLORS } from "../../../lib/constants/themeHardcoded";
 
 const Legend = () => {
   return (
     <div className="mt-5 break-all overflow-hidden">
-      <div className="flex justify-between items-center mb-4 p-1 border-b-[5px] border-lightest-gray hover:cursor-pointer">
-        <div className="hover:scale-105 transition-all">
+      <div className="flex justify-between items-center mb-4 p-1 border-b-[5px] border-lightest-gray">
+        <div className="transition-all">
           <Info fontSize="large" sx={{ color: `${TO_HEX_COLORS.purple}` }} />
         </div>
         <h3 className="text-right font-light text-base">...Legend</h3>

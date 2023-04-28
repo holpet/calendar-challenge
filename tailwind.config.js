@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { TO_HEX_COLORS } from "./src/lib/constants/themeHardcoded";
+
 export default {
   content: [
     "./index.html",
@@ -13,49 +15,39 @@ export default {
       xl: "1440px",
     },
     colors: {
-      // primary
-      white: "#ffffff",
-      black: "#020204",
-      gray: "#8f98aa",
-      purple: "#7e45db",
-      pink: "#de148b",
-      blue: "#4f40bf",
+      white: TO_HEX_COLORS.white,
+      black: TO_HEX_COLORS.black,
+      blue: TO_HEX_COLORS.blue,
+      error: TO_HEX_COLORS.red,
       transparent: "transparent",
-      error: "red",
-
-      // primary shades -> color gradiants
-      "light-purple": "#b8afec",
-      "lightest-purple": "#d6d1f4",
-      "white-purple": "#e8e5f9",
-      "mid-purple": "#905fe0",
-      "light-pink": "#f552b1",
 
       // 50 shades of gray
-      "dark-gray": "#5b6578",
-      "light-gray": "#d9dce2",
-      "lightest-gray": "#f1f2f4",
-      "white-gray": "#f7f8f9",
+      gray: TO_HEX_COLORS.gray,
+      "dark-gray": TO_HEX_COLORS.darkGray,
+      "light-gray": TO_HEX_COLORS.lightGray,
+      "lightest-gray": TO_HEX_COLORS.lightestGray,
+      "white-gray": TO_HEX_COLORS["gray-100"],
 
-      // complementary shades
-      orange: "#ff7f00",
-      "orange-500": "#ffd7b0",
-      "orange-300": "#ffe5cb",
-      "orange-100": "#fff5ec",
-      //purple: "#7e45db",
-      "purple-700": "#6627cc",
-      "purple-500": "#d6d0f4",
-      "purple-300": "#e8e5f9",
-      "purple-100": "#f3f1fc",
-      green: "#57b914",
-      "green-700": "#469610",
-      "green-500": "#bbf494",
-      "green-300": "#d6f8be",
-      "green-100": "#eefce4",
-      pink: "#de148b",
-      "pink-700": "#af106e",
-      "pink-500": "#fab6dd",
-      "pink-300": "#fcd6ec",
-      "pink-100": "#fef0f8",
+      // purple shades
+      purple: TO_HEX_COLORS.purple,
+      "light-purple": TO_HEX_COLORS.lightPurple,
+      "lightest-purple": TO_HEX_COLORS.lightestPurple,
+      "mid-purple": TO_HEX_COLORS.midPurple,
+      "purple-500": TO_HEX_COLORS["purple-500"],
+      "purple-300": TO_HEX_COLORS["purple-300"],
+      "purple-100": TO_HEX_COLORS["purple-100"],
+
+      // pink shades
+      pink: TO_HEX_COLORS.pink,
+      "pink-500": TO_HEX_COLORS["pink-500"],
+      "pink-300": TO_HEX_COLORS["pink-300"],
+      "pink-100": TO_HEX_COLORS["pink-100"],
+
+      // gray shades
+      green: TO_HEX_COLORS.green,
+      "green-500": TO_HEX_COLORS["green-500"],
+      "green-300": TO_HEX_COLORS["green-300"],
+      "green-100": TO_HEX_COLORS["green-100"],
     },
     fontFamily: {
       global: ["Inter", "sans-serif"],
@@ -65,28 +57,22 @@ export default {
     },
     extend: {
       minWidth: {
-        "icon-big": "70px",
-        "icon-small": "50px",
-        "side-panel": "14rem",
+        "side-panel": "11rem",
+      },
+      width: {
+        "side-panel": "clamp(11rem,10vw,30rem",
       },
       height: {
         "18": "4.5rem",
       },
+      fontSize: {
+        "side-calendar": "clamp(2rem,2vw,5rem)",
+      },
       gridTemplateColumns: {
-        // Simple 7 column grid
-        "7": "repeat(7, minmax(0, 1fr))",
+        "7": "repeat(7, minmax(0, 1fr))", // Simple 7 column grid
       },
       boxShadow: {
         highlight: "inset 0px -6px 0px 0px rgb(0 0 0 / 0.1)",
-      },
-      animation: {
-        "fly-in": "flyin",
-      },
-      keyframes: {
-        flyin: {
-          "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" },
-        },
       },
     },
   },

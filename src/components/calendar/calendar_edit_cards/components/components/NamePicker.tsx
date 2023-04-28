@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
+import { LEGEND_COLORS } from "../../../../../lib/constants/valuesHardcoded";
 
 interface INamePickerProps {
   activeFont: string;

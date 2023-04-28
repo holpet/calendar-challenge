@@ -4,12 +4,12 @@ import {
   IAllDays,
   IFormattedObj,
   getAllDays,
-} from "../../../lib/date_utils/dateUtils";
+} from "../../../../lib/date_utils/dateUtils";
 import {
   calendarAPIAtom,
   now,
   selectedDatesAtom,
-} from "../../../lib/atoms/globalAtoms";
+} from "../../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
 
 interface ICalenderProps {
@@ -71,8 +71,15 @@ const MonthCalendar = ({
           >
             <span
               className={`${
-                !d.isCurrentMonth ? "disabled" : d.isCurrentDay ? "today" : ""
-              } ${selectedDates.start?.isSame(d.origFormat) && "selected"}
+                !d.isCurrentMonth
+                  ? "disabled"
+                  : d.isCurrentDay
+                  ? "highlighted bg-purple"
+                  : ""
+              } ${
+                selectedDates.start?.isSame(d.origFormat) &&
+                "highlighted bg-light-purple"
+              }
               `}
             >
               {d.day}

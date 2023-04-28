@@ -7,38 +7,17 @@
 @tailwind utilities;
 
 @layer components {
-  .border-gen {
-    @apply border border-light-gray;
-  }
   .disabled {
     @apply text-light-gray;
   }
-  .today {
-    @apply bg-purple text-white rounded px-1 py-[2px];
+  .highlighted {
+    @apply text-white rounded px-1 py-[2px];
   }
-  .today-hl {
-    @apply shadow-highlight shadow-purple;
-  }
-  .selected {
-    @apply bg-light-purple text-white rounded px-1 py-[2px];
-  }
-  .selected-hl {
-    @apply shadow-highlight shadow-light-purple;
-  }
-  .swapper-active {
-    @apply py-2 px-6 w-24 m-1 bg-purple text-white rounded-lg cursor-default;
-  }
-  .swapper-hover {
-    @apply py-2 px-6 w-24 hover:text-purple hover:font-bold transition-all;
-  }
-  .gen-link {
-    @apply py-2 px-6 w-24 m-1 bg-purple text-white rounded-lg font-semibold uppercase cursor-pointer hover:bg-mid-purple transition-all;
+  .btn {
+    @apply py-2 px-6 w-24 m-1 cursor-pointer transition-all rounded-lg font-semibold uppercase;
   }
   .error {
     @apply text-red font-semibold text-[5px];
-  }
-  .animate-modal {
-    @apply animate-fly-in;
   }
 }
 
@@ -48,25 +27,28 @@
   /* FONTS */
   font-family: Inter, sans-serif;
   font-weight: 400;
+  color: var(--darkGray);
 
   /* COLORS */
   --white: #ffffff;
   --black: #020204;
   --gray: #8f98aa;
   --darkGray: #5b6578;
-  --green: #57b914;
-  --darkGreen: #469610;
-  --purple: #7e45db;
-  --pink: #de148b;
-  --blue: #4f40bf;
-  --lightPurple: #e8e5f9;
   --lightGray: #d9dce2;
   --lightestGray: #f1f2f4;
   --whiteGray: #f7f8f9;
+  /*-- palette --*/
+  --green: #57b914;
+  --darkGreen: #469610;
+  --purple: #7e45db;
+  --lightPurple: #e8e5f9;
+  --purpleSelect: #905fe0;
+  --pink: #de148b;
+  --blue: #4f40bf;
 }
 
 ::selection {
-  background-color: #905fe0;
+  background-color: var(--purpleSelect);
   color: white;
 }
 
@@ -81,7 +63,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d9dce2;
+  scrollbar-color: var(--lightGray);
 }
 
 /* Chrome, Edge, and Safari */
@@ -90,11 +72,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #d9dce2;
+  background: var(--lightGray);
   border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #7e45db;
+  background-color: var(--purple);
   border-radius: 14px;
 }

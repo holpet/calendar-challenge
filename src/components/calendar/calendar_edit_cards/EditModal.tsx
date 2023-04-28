@@ -6,10 +6,10 @@ import Form from "./components/Form";
 import {
   TO_HEX_COLORS,
   getColorNameFromHex,
-} from "../../../lib/themeHardcoded";
-import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
+} from "../../../lib/constants/themeHardcoded";
+import { INIT_MODAL_DATA } from "../../../lib/constants/valuesHardcoded";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import FormHeader from "./components/FormHeader";
+import FormHeader from "./components/components/FormHeader";
 import {
   activeEventAtom,
   now,

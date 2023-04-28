@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { EventInput } from "@fullcalendar/core";
-import { TO_HEX_COLORS, FONTS } from "../themeHardcoded";
+import { TO_HEX_COLORS, FONTS } from "../constants/themeHardcoded";
 import dayjs from "dayjs";
 
 /**

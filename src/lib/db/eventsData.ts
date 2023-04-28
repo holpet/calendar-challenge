@@ -7,7 +7,7 @@ import dayjs from "dayjs";
  * This is a MOCK database obj with initial data.
  * */
 
-const style = ["p-1"];
+const style = [""];
 
 export const EVENTS: EventInput[] = [
   {

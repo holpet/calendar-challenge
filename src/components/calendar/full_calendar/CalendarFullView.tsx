@@ -129,7 +129,7 @@ export const CalendarFullView = () => {
             selectMirror: false,
           },
           timeGridDay: {
-            titleFormat: { month: "long", day: "2-digit" },
+            titleFormat: { month: "long", day: "numeric" },
           },
         }}
         events={events}

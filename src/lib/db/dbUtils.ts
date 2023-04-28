@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { TO_HEX_COLORS } from "../themeHardcoded";
 import { Dispatch, SetStateAction } from "react";
 
-const style = ["p-1"];
+const style = [""];
 
 export function addNewEventToDB(
   eventName: string,

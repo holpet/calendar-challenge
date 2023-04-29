@@ -35,7 +35,7 @@ export const CalendarFullView = () => {
     setCalendarAPI(calendarRef.current!.getApi());
   }, [calendarRef]);
 
-  // add gfx (tentacles) to today's date
+  // add gfx (tentacles) to today's date //
   useEffect(() => {
     const elem = createTentacleElement("today");
     return () => {

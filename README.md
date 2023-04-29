@@ -1,4 +1,4 @@
-# NEBULA CALENDAR
+# CALENDAR
 
 This is a custom full calendar solution for the 2. round of a junior frontend dev challenge.
 
@@ -30,7 +30,7 @@ This is a custom full calendar solution for the 2. round of a junior frontend de
   - **to** (time) - date, required
   - **color** - string, optional
 
-#### BONUS challenge
+#### BONUS challenge:
 
 - [x] events can be edited (a modal will pop open, with editing options)
 - [x] form is being validated (title can't be empty & start date can't be older than end date)

@@ -76,7 +76,7 @@
   font-size: clamp(12px, 0.9vh, 26px) !important;
 }
 .fc-event {
-  padding: clamp(0px, 0.02vw, 6px) !important;
+  //padding: clamp(0px, 0.02vw, 6px) !important;
   border: none !important;
 }
 .fc-day-today .fc-event,
@@ -87,6 +87,11 @@
   z-index: 11 !important;
   //position: relative;
 }
+.fc-timegrid-col-events .fc-event-title.fc-sticky,
+.fc-timegrid-col-events .fc-event-time {
+  padding: 0 3px;
+}
+
 //**********************************************************//
 
 // grid events

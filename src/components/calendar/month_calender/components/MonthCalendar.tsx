@@ -9,6 +9,7 @@ import {
   calendarAPIAtom,
   now,
   selectedDatesAtom,
+  viewSwitchedAtom,
 } from "../../../../lib/atoms/globalAtoms";
 import { useAtom } from "jotai";
 
@@ -24,6 +25,7 @@ const MonthCalendar = ({
   const [allDays, setAllDays] = useState<IAllDays[] | null>(null);
   const [selectedDates, setSelectedDates] = useAtom(selectedDatesAtom);
   const [calendarAPI] = useAtom(calendarAPIAtom);
+  const [, setViewSwitched] = useAtom(viewSwitchedAtom);
 
   useEffect(() => {
     const allDays = getAllDays(currentMonthData);
@@ -38,6 +40,7 @@ const MonthCalendar = ({
       end: dayjs(date).add(1, "day").startOf("day"),
     });
     calendarAPI?.gotoDate(date.format());
+    setViewSwitched(true);
     setCurrentMonthData(date);
   }
 

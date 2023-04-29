@@ -87,7 +87,7 @@ export const CalendarFullView = () => {
     );
   };
 
-  //********** */ custom buttons ************//
+  //************ custom buttons ************//
   const buttons = {
     prev: {
       click: function () {

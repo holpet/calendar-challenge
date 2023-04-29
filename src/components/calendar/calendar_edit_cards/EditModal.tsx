@@ -17,6 +17,7 @@ import {
 } from "../../../lib/atoms/globalAtoms";
 import dayjs, { Dayjs } from "dayjs";
 import { useAtom } from "jotai";
+// import ModalTentacles from "../../gfx_elems/ModalTentacles";
 
 export interface DialogTitleProps {
   id: string;
@@ -115,17 +116,16 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
         TransitionComponent={Grow}
         PaperProps={paperProps}
         slotProps={slotProps}
-        className={`transition-all duration-1000 ${
-          open ? "rotate-0" : "rotate-12"
-        }`}
       >
         <div className="p-6 overflow-hidden relative">
           {/* ------ LABEL of EVENT DATA ------ */}
           <FormHeader activeColor={activeColor} setOpen={setOpen} />
-          {/* separator line */}
+
+          {/* separator tentacle line */}
           <div
-            className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}
+            className={`relative flexbox rounded-xl bg-gradient-to-r from-gray w-full h-2 mt-5 overflow-visible`}
           ></div>
+          {/* <ModalTentacles type={activeColor} /> */}
 
           {/* ------- FORM for EVENT DATA ------- */}
           <Form
@@ -142,6 +142,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
             setActiveFont={setActiveFont}
           />
         </div>
+        {/* <ModalTentacles type={"submit"} /> */}
       </BootstrapDialog>
     </ThemeProvider>
   );

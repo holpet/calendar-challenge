@@ -9,12 +9,12 @@ interface ITentaclesProps {
   type: string;
 }
 
-const Tentacles = ({ type }: ITentaclesProps) => {
-  const style = {
-    div: "absolute overflow-visible z-10 pointer-events-none",
-    img: "w-full h-auto",
-  };
+export const style = {
+  div: "absolute overflow-visible z-10 pointer-events-none",
+  img: "w-full h-auto",
+};
 
+const Tentacles = ({ type }: ITentaclesProps) => {
   if (type === "side") {
     return (
       <div className={`left-0 bottom-0 w-[min(25vw,350px)] ${style.div}`}>

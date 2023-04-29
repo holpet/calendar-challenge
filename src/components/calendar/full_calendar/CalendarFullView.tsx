@@ -149,7 +149,7 @@ export const CalendarFullView = () => {
         timeZoneParam="local"
         editable={true}
         selectable={true}
-        selectMirror={true}
+        selectMirror={false}
         unselectAuto={true}
         dayMaxEvents={true}
         allDaySlot={false}
@@ -163,7 +163,6 @@ export const CalendarFullView = () => {
           timeGridWeek: {
             titleFormat: { month: "long" },
             dayHeaderFormat: { weekday: "short", day: "numeric" },
-            selectMirror: false,
           },
           timeGridDay: {
             titleFormat: { month: "long", day: "numeric" },

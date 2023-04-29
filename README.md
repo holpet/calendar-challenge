@@ -13,7 +13,7 @@ This is a custom full calendar solution for the 2. round of a junior frontend de
 - [x] App is developed in React 18
 - [x] with helper libraries such as @fullcalendar and @mui
 - [x] written and typed using TypeScript (^4.9.0)
-- [x] and designed for (> 1280px).
+- [x] and designed for (> 1280px) resolution.
 
 #### Requirements:
 

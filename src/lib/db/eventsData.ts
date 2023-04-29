@@ -24,7 +24,7 @@ export const EVENTS: EventInput[] = [
   },
   {
     id: uuidv4(),
-    title: "Well, this was interesting.",
+    title: "Fun with tentacles.",
     start: "2023-04-11" + "T12:00:00",
     end: "2023-04-11" + "T13:00:00",
     color: TO_HEX_COLORS.purple,
@@ -60,6 +60,15 @@ export const EVENTS: EventInput[] = [
   },
   {
     id: uuidv4(),
+    title: "Lorem ipsum, lorem ipsum, lorem ipsum.",
+    start: "2023-05-04" + "T18:00:00",
+    end: "2023-05-05" + "T22:00:00",
+    color: TO_HEX_COLORS.green,
+    font: FONTS.global,
+    classNames: [...style, "bg-green-300 hover:bg-green-500"],
+  },
+  {
+    id: uuidv4(),
     title: "April fools' is gone, but I'm still here.",
     start: "2023-04-14" + "T18:00:00",
     end: "2023-04-14" + "T19:00:00",
@@ -69,7 +78,7 @@ export const EVENTS: EventInput[] = [
   },
   {
     id: uuidv4(),
-    title: "Even though, this was a pre-made component :'O.",
+    title: "Even though, there is a library component :'O.",
     start: "2023-04-05" + "T18:52:02",
     end: "2023-04-06" + "T12:52:00",
     color: TO_HEX_COLORS.green,
@@ -78,7 +87,7 @@ export const EVENTS: EventInput[] = [
   },
   {
     id: uuidv4(),
-    title: "Getting this all to work was harder than it seems.",
+    title: "Getting this to work was harder than it seems.",
     start: "2023-04-04" + "T20:05:02",
     end: "2023-04-05" + "T13:00:00",
     color: TO_HEX_COLORS.pink,
@@ -87,7 +96,7 @@ export const EVENTS: EventInput[] = [
   },
   {
     id: uuidv4(),
-    title: "Peppermint flavor is obnoxious.",
+    title: "Pineapple belongs on a pizza.",
     start: "2023-04-19" + "T19:15:00",
     end: "2023-04-21" + "T05:10:00",
     color: TO_HEX_COLORS.purple,

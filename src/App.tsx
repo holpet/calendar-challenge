@@ -19,7 +19,7 @@ function App() {
             </div>
           </aside>
           {/* MAIN PANEL */}
-          <main className="w-full p-6 text-sm">
+          <main className="w-full p-6 lg:text-[9px]/[13px] xl:text-xs xxl:text-sm xxxl:text-xl">
             <CalendarFullView />
           </main>
         </div>

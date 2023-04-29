@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { LEGEND_COLORS } from "../../../../lib/modal_utils/modalUtils";
+import { LEGEND_COLORS } from "../../../../../lib/constants/valuesHardcoded";
 
 interface INamePickerProps {
   activeFont: string;
@@ -31,9 +31,7 @@ const NamePicker = ({
         className={`border-none py-2 px-1 w-full outline-none font-bold ${activeFont} ${
           LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS]
             .colorTextClass
-        } resize-none text-2xl ${
-          LEGEND_COLORS[activeColor as keyof typeof LEGEND_COLORS].colorBgClass
-        }`}
+        } resize-none text-2xl bg-transparent`}
         autoFocus={true}
         value={eventName}
         autoComplete="off"

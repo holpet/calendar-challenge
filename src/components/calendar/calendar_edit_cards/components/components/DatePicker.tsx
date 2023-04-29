@@ -3,7 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimeField } from "@mui/x-date-pickers/DateTimeField";
 import dayjs, { Dayjs } from "dayjs";
 import { Dispatch, SetStateAction } from "react";
-import { TO_HEX_COLORS } from "../../../../lib/themeHardcoded";
+import { TO_HEX_COLORS } from "../../../../../lib/constants/themeHardcoded";
 
 interface IDatePickerProps {
   activeColor: string;
@@ -31,11 +31,18 @@ export default function DatePicker({
       textAlign: "center",
       fontSize: "large",
       letterSpacing: "0.05rem",
-      backgroundColor:
-        TO_HEX_COLORS[(activeColor + "-100") as keyof typeof TO_HEX_COLORS],
+      backgroundColor: "rgba(255,255,255,0.4)",
     },
     "& .MuiInputBase-root.Mui-focused .MuiInputBase-input": {
-      color: "#8f98aa",
+      color: TO_HEX_COLORS.gray,
+    },
+    "& .MuiOutlinedInput-root": {
+      "&:hover fieldset": {
+        borderColor: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
+      },
+    },
+    "& .MuiFormLabel-root": {
+      color: TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS],
     },
   };
 
@@ -66,7 +73,9 @@ export default function DatePicker({
               classes: { root: `${errorDate ? "Mui-error" : ""}` },
             }}
             InputProps={{
-              classes: { root: `${errorDate ? "Mui-error" : ""}` },
+              classes: {
+                root: `${errorDate ? "Mui-error" : ""}`,
+              },
             }}
           />
         </div>

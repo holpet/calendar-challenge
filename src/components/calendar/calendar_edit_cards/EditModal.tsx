@@ -1,14 +1,15 @@
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
+import { Grow } from "@mui/material";
 import { SetStateAction, useEffect, useState } from "react";
 import Form from "./components/Form";
 import {
   TO_HEX_COLORS,
   getColorNameFromHex,
-} from "../../../lib/themeHardcoded";
-import { INIT_MODAL_DATA } from "../../../lib/modal_utils/modalUtils";
+} from "../../../lib/constants/themeHardcoded";
+import { INIT_MODAL_DATA } from "../../../lib/constants/valuesHardcoded";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import FormHeader from "./components/FormHeader";
+import FormHeader from "./components/components/FormHeader";
 import {
   activeEventAtom,
   now,
@@ -16,6 +17,7 @@ import {
 } from "../../../lib/atoms/globalAtoms";
 import dayjs, { Dayjs } from "dayjs";
 import { useAtom } from "jotai";
+// import ModalTentacles from "../../gfx_elems/ModalTentacles";
 
 export interface DialogTitleProps {
   id: string;
@@ -84,10 +86,10 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
       border: `10px solid ${
         TO_HEX_COLORS[activeColor as keyof typeof TO_HEX_COLORS]
       }`,
-      borderRadius: "20px",
-      backgroundColor: `${
+      borderRadius: "5px",
+      background: `linear-gradient(to right bottom, ${
         TO_HEX_COLORS[(activeColor + "-300") as keyof typeof TO_HEX_COLORS]
-      }`,
+      },${"white"})`,
     },
   };
 
@@ -111,16 +113,19 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        TransitionComponent={Grow}
         PaperProps={paperProps}
         slotProps={slotProps}
       >
-        <div className="p-6 overflow-visible relative">
+        <div className="p-6 overflow-hidden relative">
           {/* ------ LABEL of EVENT DATA ------ */}
           <FormHeader activeColor={activeColor} setOpen={setOpen} />
-          {/* separator line */}
+
+          {/* separator tentacle line */}
           <div
-            className={`flexbox bg-gradient-to-r rounded-xl from-gray w-full h-2 mt-5`}
+            className={`relative flexbox rounded-xl bg-gradient-to-r from-gray w-full h-2 mt-5 overflow-visible`}
           ></div>
+          {/* <ModalTentacles type={activeColor} /> */}
 
           {/* ------- FORM for EVENT DATA ------- */}
           <Form
@@ -137,6 +142,7 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
             setActiveFont={setActiveFont}
           />
         </div>
+        {/* <ModalTentacles type={"submit"} /> */}
       </BootstrapDialog>
     </ThemeProvider>
   );

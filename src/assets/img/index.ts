@@ -1,3 +1,9 @@
-export { default as logo } from "./calendar_icon.svg";
-export { default as logo_grad } from "./calendar_icon_colored.svg";
-export { default as logo_grad2 } from "./calendar_icon_colored2.svg";
+export { default as tentacles_today } from "./tentacles_today.svg";
+export { default as tentacles } from "./tentacles.svg";
+export { default as tentacles_green } from "./tentacles_green.svg";
+export { default as tentacles_pink } from "./tentacles_pink.svg";
+export { default as tentacles_purple } from "./tentacles_purple.svg";
+export { default as tentacle_submit } from "./tentacle_submit.svg";
+export { default as tentacle_green_modal } from "./tentacle_green_modal.svg";
+export { default as tentacle_pink_modal } from "./tentacle_pink_modal.svg";
+export { default as tentacle_purple_modal } from "./tentacle_purple_modal.svg";

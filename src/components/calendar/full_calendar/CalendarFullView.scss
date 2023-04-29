@@ -1,0 +1,195 @@
+/* Calendar style can be changed by targetting fixed component classes */
+
+// --------------------------------- CALENDAR HEADER
+.fc-header-toolbar {
+  background: linear-gradient(to right, var(--purple), var(--blue));
+  margin: 0 !important;
+  color: var(--white) !important;
+  font-weight: 500;
+  border-color: var(--white);
+  border-width: 16px 16px 0 16px;
+  padding: 5px 0 5px 0;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+/* 3 chunks: [next/prev, today] [title] [view swicher] */
+.fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+}
+.fc-toolbar-chunk:nth-child(1) {
+  margin-right: 16px;
+}
+.fc-toolbar-title {
+  font-size: 1.75rem !important;
+}
+
+// -------------------------------------- CALENDAR BODY
+// table body
+.fc-view-harness {
+  border-color: var(--white);
+  border-width: 0 16px 16px 16px;
+  overflow: hidden;
+}
+// today tile -> special semi-transparent
+.fc-day-today {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+// any other tile (apart from today) is white
+.fc-day:not(.fc-day-today),
+.fc-day:not(.fc-col-header-cell) {
+  background-color: rgba(255, 255, 255, 1);
+}
+// -----> today number is highlighted
+.fc-day-today .fc-daygrid-day-top .fc-daygrid-day-number {
+  background-color: var(--purple) !important;
+  border-radius: 5px;
+  color: var(--white);
+  margin: 2px;
+  padding: 0 4px;
+}
+// saturday & sunday
+.fc-day-sat:not(.fc-day-today),
+.fc-day-sun:not(.fc-day-today) {
+  background-color: var(--whiteGray) !important;
+}
+
+/* +++++++++++++++++++++++  */
+// selected
+.fc-highlight {
+  background-color: rgba(232, 229, 249, 0.3) !important;
+  color: var(--gray) !important;
+}
+
+//**********************************************************//
+/* FONT & PADDING OF EVENTS - dynamic */
+.fc-day:not(.fc-col-header-cell) {
+  font-size: clamp(10px, 0.7vw, 25px) !important;
+  line-height: clamp(0.2rem, 1vw, 2.5rem) !important;
+}
+.fc-day.fc-col-header-cell {
+  font-size: clamp(12px, 0.85vw, 26px) !important;
+}
+.fc-timegrid-slot {
+  font-size: clamp(12px, 0.9vh, 26px) !important;
+}
+.fc-event {
+  padding: clamp(0px, 0.02vw, 6px) !important;
+  border: none !important;
+}
+.fc-day-today .fc-event,
+.fc-day-past .fc-event,
+.fc-day-future .fc-event,
+.fc .fc-daygrid-event,
+.fc-day .fc-event {
+  z-index: 11 !important;
+  position: relative;
+}
+//**********************************************************//
+
+// grid events
+.fc-daygrid-dot-event {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: inherit solid 2px;
+}
+.fc-daygrid-event-dot {
+  display: none;
+}
+.fc-daygrid-block-event:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+// weekday names
+.fc-view .fc-col-header-cell {
+  background-color: var(--lightGray) !important;
+  padding: 5px 0 5px 0;
+  color: var(--darkGray);
+  border: none;
+  margin: 5px;
+  font-size: medium;
+}
+.fc-timegrid-slot-label-frame,
+.fc-timegrid-slot-label,
+.fc-timegrid-axis {
+  background-color: var(--lightGray) !important;
+}
+.fc-timegrid-axis {
+  background-color: var(--lightestGray) !important;
+}
+
+/* BUTTONS */
+// all
+.fc-button {
+  display: flex !important;
+  align-content: center !important;
+  padding: 0.3rem 1rem !important;
+  line-height: normal !important;
+  border-radius: 0px !important;
+  @extend .toTransition;
+}
+.fc-button:focus,
+.fc-button:active {
+  outline: none !important;
+  border: none !important;
+}
+
+// today
+.fc-button:focus.fc-today-button,
+.fc-button:active.fc-today-button,
+.fc-today-button {
+  background-color: transparent !important;
+  color: var(--white) !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--white) !important;
+}
+.fc-today-button:hover:not([disabled]) {
+  background-color: var(--green) !important;
+}
+.fc-today-button:hover[disabled] {
+  pointer-events: none !important;
+}
+
+// prev/next buttons
+.fc-prev-button,
+.fc-next-button,
+.fc-next-button:focus,
+.fc-next-button:active {
+  background-color: transparent !important;
+  border: none !important;
+}
+.fc-prev-button:hover,
+.fc-next-button:hover {
+  color: var(--green) !important;
+}
+
+// view switchers
+.fc-toolbar-chunk:nth-child(3) {
+  border: 1px solid var(--white) !important;
+  margin: 0 16px;
+}
+.fc-dayGridMonth-button,
+.fc-timeGridWeek-button,
+.fc-timeGridDay-button {
+  border: none !important;
+  width: 5rem !important;
+  display: flex;
+  justify-content: center;
+  background-color: transparent !important;
+}
+.fc-dayGridMonth-button:hover,
+.fc-timeGridWeek-button:hover,
+.fc-timeGridDay-button:hover {
+  background-color: var(--green) !important;
+}
+.fc-button-active {
+  background-color: var(--pink) !important;
+}
+
+//**********************************************************//
+
+// TRANSITION EFFECTS
+.toTransition {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

@@ -1,3 +1,4 @@
+import "./CalendarFullView.scss";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -10,22 +11,38 @@ import {
   calendarAPIAtom,
   eventsAtom,
   selectedDatesAtom,
+  viewSwitchedAtom,
 } from "../../../lib/atoms/globalAtoms";
 import EditModal from "../calendar_edit_cards/EditModal";
 import dayjs from "dayjs";
 import { addEditedEventToDB } from "../../../lib/db/dbUtils";
+import {
+  METRICS,
+  getColorNameFromHex,
+} from "../../../lib/constants/themeHardcoded";
+import { createTentacleElement } from "../../../lib/gfx_utils/gfxUtils";
 
 export const CalendarFullView = () => {
   const [events, setEvents] = useAtom(eventsAtom);
   const calendarRef = useRef<FullCalendar>(null);
-  const [, setCalendarAPI] = useAtom(calendarAPIAtom);
+  const [calendarAPI, setCalendarAPI] = useAtom(calendarAPIAtom);
   const [open, setOpen] = useState(false); // open or close edit modal
   const [, setSelectedDate] = useAtom(selectedDatesAtom);
   const [, setActiveEvent] = useAtom(activeEventAtom);
+  const [viewSwitched, setViewSwitched] = useAtom(viewSwitchedAtom); // informs the side panel "year"
 
   useEffect(() => {
     setCalendarAPI(calendarRef.current!.getApi());
   }, [calendarRef]);
+
+  // add gfx (tentacles) to today's date
+  useEffect(() => {
+    const elem = createTentacleElement("today");
+    return () => {
+      elem?.parent?.querySelector(".tentacles-today") !== null &&
+        elem?.parent?.removeChild(elem.child);
+    };
+  }, [viewSwitched]);
 
   /* Select a date from calendar */
   const handleDateSelect = (selectInfo: DateSelectArg) => {
@@ -63,7 +80,7 @@ export const CalendarFullView = () => {
       event.title + "",
       dayjs(eventDropResizeInfo.event.start),
       dayjs(eventDropResizeInfo.event.end),
-      event.color + "",
+      getColorNameFromHex(event.color + ""),
       event.font,
       eventDropResizeInfo.event,
       events,
@@ -71,8 +88,52 @@ export const CalendarFullView = () => {
     );
   };
 
+  //************ custom buttons ************//
+  const buttons = {
+    prev: {
+      click: function () {
+        calendarAPI?.prev();
+        setViewSwitched(true);
+      },
+    },
+    next: {
+      click: function () {
+        calendarAPI?.next();
+        setViewSwitched(true);
+      },
+    },
+    today: {
+      text: "today",
+      click: function () {
+        calendarAPI?.today();
+        setViewSwitched(true);
+      },
+    },
+    dayGridMonth: {
+      text: "month",
+      click: function () {
+        calendarAPI?.changeView("dayGridMonth");
+        setViewSwitched(true);
+      },
+    },
+    timeGridWeek: {
+      text: "week",
+      click: function () {
+        calendarAPI?.changeView("timeGridWeek");
+        setViewSwitched(true);
+      },
+    },
+    timeGridDay: {
+      text: "day",
+      click: function () {
+        calendarAPI?.changeView("timeGridDay");
+        setViewSwitched(true);
+      },
+    },
+  };
+
   return (
-    <div className="pb-6">
+    <>
       <EditModal open={open} setOpen={setOpen} />
       <FullCalendar
         ref={calendarRef}
@@ -84,6 +145,7 @@ export const CalendarFullView = () => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
+        customButtons={buttons}
         initialView="dayGridMonth"
         timeZoneParam="local"
         editable={true}
@@ -91,13 +153,21 @@ export const CalendarFullView = () => {
         selectMirror={true}
         unselectAuto={true}
         dayMaxEvents={true}
+        allDaySlot={false}
+        expandRows={true}
         weekends={true}
+        height={`calc(100vh - ${METRICS.bodyEdgePadding * 2}px)`}
         views={{
           dayGridMonth: {
-            titleFormat: { year: "numeric", month: "long" },
+            titleFormat: { month: "long" },
           },
-          dayGridWeek: {
-            titleFormat: { year: "numeric", month: "long", day: "2-digit" },
+          timeGridWeek: {
+            titleFormat: { month: "long" },
+            dayHeaderFormat: { weekday: "short", day: "numeric" },
+            selectMirror: false,
+          },
+          timeGridDay: {
+            titleFormat: { month: "long", day: "numeric" },
           },
         }}
         events={events}
@@ -107,16 +177,10 @@ export const CalendarFullView = () => {
           meridiem: false,
         }}
         select={handleDateSelect}
-        //eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}
         eventDrop={handleDropAndResize}
         eventResize={handleDropAndResize}
-        /* you can update a remote database when these fire:
-    eventAdd={function(){}}
-    eventChange={function(){}}
-    eventRemove={function(){}}
-    */
       />
-    </div>
+    </>
   );
 };

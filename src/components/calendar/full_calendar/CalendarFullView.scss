@@ -20,6 +20,11 @@
 .fc-toolbar-chunk:nth-child(1) {
   margin-right: 16px;
 }
+.fc-toolbar-chunk:nth-child(1),
+.fc-toolbar-chunk:nth-child(3) {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
 .fc-toolbar-title {
   font-size: 1.75rem !important;
 }
@@ -63,10 +68,6 @@
 
 //**********************************************************//
 /* FONT & PADDING OF EVENTS - dynamic */
-.fc-day:not(.fc-col-header-cell) {
-  font-size: clamp(10px, 0.7vw, 25px) !important;
-  line-height: clamp(0.2rem, 1vw, 2.5rem) !important;
-}
 .fc-day.fc-col-header-cell {
   font-size: clamp(12px, 0.85vw, 26px) !important;
 }
@@ -74,7 +75,7 @@
   font-size: clamp(12px, 0.9vh, 26px) !important;
 }
 .fc-event {
-  padding: clamp(0px, 0.02vw, 6px) !important;
+  //padding: clamp(0px, 0.02vw, 6px) !important;
   border: none !important;
 }
 .fc-day-today .fc-event,

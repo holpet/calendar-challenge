@@ -13,6 +13,8 @@ export default {
       md: "768px",
       lg: "976px",
       xl: "1440px",
+      xxl: "1920px",
+      xxxl: "2560px",
     },
     colors: {
       white: TO_HEX_COLORS.white,

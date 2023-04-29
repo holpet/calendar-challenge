@@ -66,6 +66,9 @@
   border: 4px solid var(--purple);
   border-radius: 2px;
 }
+.fc-daygrid-body .fc-highlight {
+  border: none !important;
+}
 
 //**********************************************************//
 /* FONT & PADDING OF EVENTS - dynamic */

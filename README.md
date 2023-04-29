@@ -4,25 +4,27 @@ This is a custom full calendar solution for the 2. round of a junior frontend de
 
 ### LIVE DEMO: [https://event-calendar-tron.vercel.app/](https://event-calendar-tron.vercel.app/)
 
-### The challenge - [x]
+![DEMO2](./src/assets/demo/demo2.jpg)
+
+### The challenge
 
 #### Tech specification:
 
-- [ ] App is developed in React 18
-- [ ] With helper libraries such as @fullcalendar and @mui
-- [ ] Written and typed using TypeScript (^4.9.0)
-- [ ] And designed for (> 1280px)
+- [x] App is developed in React 18
+- [x] with helper libraries such as @fullcalendar and @mui
+- [x] written and typed using TypeScript (^4.9.0)
+- [x] and designed for (> 1280px).
 
 #### Requirements:
 
-- [ ] Single-page app
-- [ ] with a **calendar view** (month | week | day)
-- [ ] months can be moved forwards and backwards
-- [ ] week starts with **Monday** and ends with **Sunday**
-- [ ] (colorful) indication of a **current day**
-- [ ] every day can have **0 - n events**
-- [ ] events can be **added** and **removed**
-- [ ] the EVENT object must have:
+- [x] single-page app
+- [x] with a **calendar view** (month | week | day)
+- [x] months can be moved forwards and backwards
+- [x] week starts with **Monday** and ends with **Sunday**
+- [x] (colorful) indication of a **current day**
+- [x] every day can have **0 - n events**
+- [x] events can be **added** and **removed**
+- [x] the EVENT object must have:
   - **title** - string, required
   - **from** (time) - date, required
   - **to** (time) - date, required
@@ -30,12 +32,12 @@ This is a custom full calendar solution for the 2. round of a junior frontend de
 
 #### BONUS challenge
 
-- [ ] events can be edited (a modal will pop open, with editing options)
-- [ ] form is being validated (title can't be empty & start date can't be older than end date)
-- [ ] events can be spread over multiple days
-- [ ] **today** button, which moves calendar view back to current day
+- [x] events can be edited (a modal will pop open, with editing options)
+- [x] form is being validated (title can't be empty & start date can't be older than end date)
+- [x] events can be spread over multiple days
+- [x] **today** button, which moves calendar view back to current day
   - **side panel** with a small calendar for a date "quick pick", **create** button (apart from clicking on the full calendar grid) & color legend
-- [x] app is not optimised for mobile (WORK IN PROGRESS)
+- [ ] app is not optimised for mobile (WORK IN PROGRESS)
 - [x] app is deployed online (see link above)
 
 ## My process
@@ -48,8 +50,9 @@ This is a custom full calendar solution for the 2. round of a junior frontend de
 
 ### Color palette
 
-- inspired by the Nebula theme
-  ![DEMO1](./src/assets/demo/nebula_theme.jpg)
+Inspired by the Nebula theme:
+
+![DEMO1](./src/assets/demo/nebula_theme.jpg)
 
 ### Useful resources & notes
 
@@ -73,5 +76,4 @@ yarn dev
 ## Desktop version:
 
 ![DEMO1](./src/assets/demo/demo1.jpg)
-![DEMO2](./src/assets/demo/demo2.jpg)
 ![DEMO2](./src/assets/demo/demo3.jpg)

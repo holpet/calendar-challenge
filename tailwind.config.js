@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { TO_HEX_COLORS } from "./src/lib/constants/themeHardcoded";
+import { METRICS, TO_HEX_COLORS } from "./src/lib/constants/themeHardcoded";
 
 export default {
   content: [
@@ -58,23 +58,18 @@ export default {
       inherit: "inherit",
     },
     extend: {
-      minWidth: {
-        "side-panel": "11rem",
-      },
       width: {
-        "side-panel": "clamp(11rem,10vw,30rem",
+        "side-panel": "clamp(11rem,10vw,30rem)",
       },
-      height: {
-        "18": "4.5rem",
+      padding: {
+        edgeBase: METRICS.bodyEdgePadding,
+        edgeLg: METRICS.bodyEdgePadding * 1.5,
       },
       fontSize: {
-        "side-calendar": "clamp(2rem,2vw,5rem)",
+        xxs: ["9px", "13px"],
       },
       gridTemplateColumns: {
         "7": "repeat(7, minmax(0, 1fr))", // Simple 7 column grid
-      },
-      boxShadow: {
-        highlight: "inset 0px -6px 0px 0px rgb(0 0 0 / 0.1)",
       },
     },
   },

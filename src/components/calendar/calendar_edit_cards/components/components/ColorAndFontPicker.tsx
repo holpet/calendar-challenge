@@ -12,6 +12,11 @@ const ColorAndFontPicker = ({
   setActiveColor,
   setActiveFont,
 }: IColorAndFontPickerProps) => {
+  const style = {
+    font:
+      "w-5 h-5 flex justify-center hover:text-purple hover:cursor-pointer transition-all",
+  };
+
   return (
     <div className="flex mr-2">
       {/* ------ colors ------ */}
@@ -29,13 +34,13 @@ const ColorAndFontPicker = ({
       <div className="text-gray font-bold text-lg flex items-baseline">
         <div
           onClick={() => setActiveFont(FONTS.global)}
-          className="w-5 h-5 font-global flex justify-center hover:text-purple hover:cursor-pointer transition-all"
+          className={`${style.font} font-global`}
         >
           A
         </div>
         <div
           onClick={() => setActiveFont(FONTS.handwritten)}
-          className="w-5 h-5 font-handwritten flex justify-center self-baseline hover:text-purple hover:cursor-pointer transition-all"
+          className={`${style.font} font-handwritten self-baseline`}
         >
           A
         </div>

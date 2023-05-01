@@ -29,99 +29,6 @@
   font-size: 1.75rem !important;
 }
 
-// -------------------------------------- CALENDAR BODY
-// table body
-.fc-view-harness {
-  border-color: var(--white);
-  border-width: 0 16px 16px 16px;
-  overflow: hidden;
-}
-// today tile -> special semi-transparent
-.fc-day-today {
-  background: rgba(255, 255, 255, 0.5) !important;
-}
-// any other tile (apart from today) is white
-.fc-day:not(.fc-day-today),
-.fc-day:not(.fc-col-header-cell) {
-  background-color: rgba(255, 255, 255, 1);
-}
-// -----> today number is highlighted
-.fc-day-today .fc-daygrid-day-top .fc-daygrid-day-number {
-  background-color: var(--purple) !important;
-  border-radius: 5px;
-  color: var(--white);
-  margin: 4px 2px;
-  padding: 0 4px;
-}
-// saturday & sunday
-.fc-day-sat:not(.fc-day-today),
-.fc-day-sun:not(.fc-day-today) {
-  background-color: var(--whiteGray) !important;
-}
-
-/* +++++++++++++++++++++++  */
-// selected
-.fc-highlight {
-  background-color: rgba(232, 229, 249, 0.3) !important;
-  border: 4px solid var(--purple);
-  border-radius: 2px;
-}
-.fc-daygrid-body .fc-highlight {
-  border: none !important;
-}
-
-//**********************************************************//
-/* FONT & PADDING OF EVENTS - dynamic */
-.fc-day.fc-col-header-cell {
-  font-size: clamp(12px, 0.85vw, 26px) !important;
-}
-.fc-timegrid-slot {
-  font-size: clamp(12px, 0.9vh, 26px) !important;
-}
-.fc-event {
-  //padding: clamp(0px, 0.02vw, 6px) !important;
-  border: none !important;
-}
-.fc-day-today .fc-event,
-.fc-day-past .fc-event,
-.fc-day-future .fc-event,
-.fc .fc-daygrid-event,
-.fc-day .fc-event {
-  z-index: 11 !important;
-  //position: relative;
-}
-.fc-event-title.fc-sticky,
-.fc-event-time {
-  padding: 0 3px !important;
-}
-
-//**********************************************************//
-
-// grid events
-.fc-daygrid-event-dot {
-  display: none;
-}
-.fc-daygrid-dot-event {
-  padding: 0px !important;
-}
-// weekday names
-.fc-view .fc-col-header-cell {
-  background-color: var(--lightGray) !important;
-  padding: 5px 0 5px 0;
-  color: var(--darkGray);
-  border: none;
-  margin: 5px;
-  font-size: medium;
-}
-.fc-timegrid-slot-label-frame,
-.fc-timegrid-slot-label,
-.fc-timegrid-axis {
-  background-color: var(--lightGray) !important;
-}
-.fc-timegrid-axis {
-  background-color: var(--lightestGray) !important;
-}
-
 /* BUTTONS */
 // all
 .fc-button {
@@ -188,6 +95,98 @@
 }
 .fc-button-active {
   background-color: var(--pink) !important;
+}
+
+// -------------------------------------- CALENDAR BODY
+// table body
+.fc-view-harness {
+  border-color: var(--white);
+  border-width: 0 16px 16px 16px;
+  overflow: hidden;
+}
+// today tile -> special semi-transparent
+.fc-day-today {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+// any other tile (apart from today) is white
+.fc-day:not(.fc-day-today),
+.fc-day:not(.fc-col-header-cell) {
+  background-color: rgba(255, 255, 255, 1);
+}
+// -----> today number is highlighted
+.fc-day-today .fc-daygrid-day-top .fc-daygrid-day-number {
+  background-color: var(--purple) !important;
+  border-radius: 5px;
+  color: var(--white);
+  margin: 4px 2px;
+  padding: 0 4px;
+}
+// saturday & sunday
+.fc-day-sat:not(.fc-day-today),
+.fc-day-sun:not(.fc-day-today) {
+  background-color: var(--whiteGray) !important;
+}
+
+/* +++++++++++++++++++++++  */
+// selected
+.fc-highlight {
+  background-color: rgba(232, 229, 249, 0.3) !important;
+  border: 4px solid var(--purple);
+  border-radius: 2px;
+}
+.fc-daygrid-body .fc-highlight {
+  border: none !important;
+}
+
+//**********************************************************//
+/* FONT & PADDING OF EVENTS - dynamic */
+.fc-day.fc-col-header-cell {
+  font-size: clamp(12px, 0.85vw, 26px) !important;
+}
+.fc-timegrid-slot {
+  font-size: clamp(12px, 0.9vh, 26px) !important;
+}
+.fc-event {
+  border: none !important;
+}
+.fc-day-today .fc-event,
+.fc-day-past .fc-event,
+.fc-day-future .fc-event,
+.fc .fc-daygrid-event,
+.fc-day .fc-event {
+  z-index: 11 !important;
+}
+.fc-event-title.fc-sticky,
+.fc-event-time {
+  padding: 0 3px !important;
+}
+
+//**********************************************************//
+
+// grid events
+.fc-daygrid-event-dot {
+  display: none;
+}
+.fc-daygrid-dot-event {
+  padding: 0px !important;
+}
+// weekday names
+.fc-view .fc-col-header-cell {
+  background-color: var(--lightGray) !important;
+  padding: 5px 0 5px 0;
+  color: var(--darkGray);
+  border: none;
+  margin: 5px;
+  font-size: medium;
+}
+// timegrid labels
+.fc-timegrid-slot-label-frame,
+.fc-timegrid-slot-label,
+.fc-timegrid-axis {
+  background-color: var(--lightGray) !important;
+}
+.fc-timegrid-axis {
+  background-color: var(--lightestGray) !important;
 }
 
 //**********************************************************//

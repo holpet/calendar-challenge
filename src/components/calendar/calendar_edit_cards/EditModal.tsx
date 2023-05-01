@@ -101,16 +101,12 @@ export default function EditModal({ open, setOpen }: IEditCardProps) {
     },
   };
 
-  function handleClose() {
-    setOpen(false);
-  }
-
   /*  ****** -------------MODAL--------------- ******  */
 
   return (
     <ThemeProvider theme={theme}>
       <BootstrapDialog
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="customized-dialog-title"
         open={open}
         TransitionComponent={Grow}

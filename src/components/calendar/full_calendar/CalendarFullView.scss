@@ -50,7 +50,7 @@
   background-color: var(--purple) !important;
   border-radius: 5px;
   color: var(--white);
-  margin: 2px;
+  margin: 4px 2px;
   padding: 0 4px;
 }
 // saturday & sunday
@@ -90,25 +90,20 @@
   z-index: 11 !important;
   //position: relative;
 }
-.fc-timegrid-col-events .fc-event-title.fc-sticky,
-.fc-timegrid-col-events .fc-event-time {
-  padding: 0 3px;
+.fc-event-title.fc-sticky,
+.fc-event-time {
+  padding: 0 3px !important;
 }
 
 //**********************************************************//
 
 // grid events
-.fc-daygrid-dot-event {
-  background-color: rgba(0, 0, 0, 0.05);
-  border: inherit solid 2px;
-}
 .fc-daygrid-event-dot {
   display: none;
 }
-.fc-daygrid-block-event:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.fc-daygrid-dot-event {
+  padding: 0px !important;
 }
-
 // weekday names
 .fc-view .fc-col-header-cell {
   background-color: var(--lightGray) !important;
